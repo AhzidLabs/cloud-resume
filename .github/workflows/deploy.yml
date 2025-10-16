@@ -27,6 +27,8 @@ jobs:
         run: |
           az storage blob upload-batch --account-name "$AZURE_STORAGE_ACCOUNT" \
             -s . -d '$web' --overwrite
+            <!-- deploy-check: 2025-10-16 -->
+
 # Notes:
 # - Requires GitHub Secrets: AZURE_CREDENTIALS (service principal JSON); AZURE_STORAGE_ACCOUNT; AZURE_STORAGE_KEY
 # - Create these under Settings -> Secrets and variables -> Actions in your GitHub repo
