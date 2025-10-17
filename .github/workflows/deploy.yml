@@ -26,3 +26,7 @@ jobs:
           AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
         run: |
           az storage blob upload-batch --source . --destination '$web' --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_KEY --overwrite --exclude .git --exclude .github
+     
+      - name: Purge Azure CDN
+        run: |
+         az cdn endpoint purge --resource-group <your-resource-group> --profile-name resumeCDN --name resumeendpoint --content-paths '/*'
