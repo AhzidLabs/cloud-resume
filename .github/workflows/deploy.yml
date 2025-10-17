@@ -29,4 +29,4 @@ jobs:
      
       - name: Purge Azure CDN
         run: |
-         az cdn endpoint purge --resource-group <your-resource-group> --profile-name resumeCDN --name resumeendpoint --content-paths '/*'
+         az cdn endpoint purge --resource-group <rg-cloudresume-ahzidmahmood> --profile-name resumeCDN --name resumeendpoint --content-paths '/*'
