@@ -48,3 +48,22 @@ a:hover {
 p, li {
     font-size: 15px;
 }
+
+body {
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.cv-wrapper {
+  background-color: #ffffff;
+  padding: 40px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  line-height: 1.6;
+}
