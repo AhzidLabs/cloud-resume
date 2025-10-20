@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure Projects - Ahzid Mahmood</title>
+  <link rel="stylesheet" href="style.css?v=20251020">
+  <style>
+    .timeline {
+      border-left: 4px solid #004aad;
+      margin-top: 40px;
+      padding-left: 20px;
+    }
+    .timeline-item {
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: "•";
+      position: absolute;
+      left: -12px;
+      top: 0;
+      font-size: 28px;
+      color: #004aad;
+    }
+    .timeline-item img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin: 10px 0;
+    }
+    .button {
+      display: inline-block;
+      margin-right: 10px;
+      background: #004aad;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .button:hover {
+      background: #003580;
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-wrapper">
+    <header>
+      <h1>Azure Projects Timeline</h1>
+      <p>Showcasing hands-on Azure Administrator–level labs and deployments.</p>
+      <a href="index.html" class="button">← Back to Resume</a>
+    </header>
+
+    <section class="timeline">
+
+      <div class="timeline-item">
+        <h2>2025 – Azure Cloud Resume Project</h2>
+        <img src="images/cloud-resume.png" alt="Cloud Resume Screenshot">
+        <p>Deployed a personal résumé website on Azure Storage with CDN and Front Door HTTPS. Configured DNS, SSL, and CI/CD via GitHub Actions.</p>
+        <p><strong>Azure Services:</strong> Storage, CDN, Front Door, DNS, Certificates</p>
+        <a href="https://www.ahzidcloudresume.com" class="button" target="_blank">🌐 View Live</a>
+        <a href="https://github.com/ahzid/AzureCloudResume" class="button" target="_blank">📁 View Code</a>
+      </div>
+
+      <div class="timeline-item">
+        <h2>2024 – Secrets & Identity Lab</h2>
+        <img src="images/entra-lab.png" alt="Key Vault Screenshot">
+        <p>Configured Azure Key Vault to secure secrets, and implemented Managed Identity and RBAC to eliminate hardcoded credentials.</p>
+        <p><strong>Azure Services:</strong> Key Vault, Entra ID, RBAC</p>
+        <a href="https://github.com/ahzid/EntraLab" class="button" target="_blank">📁 View Evidence</a>
+      </div>
+
+      <div class="timeline-item">
+        <h2>2024 – Networking & Access Lab</h2>
+        <img src="images/networking-lab.png" alt="Networking Screenshot">
+        <p>Created virtual networks, NSGs, and Bastion host for secure remote administration of Azure VMs.</p>
+        <p><strong>Azure Services:</strong> NSG, VNet, Bastion, Azure Monitor</p>
+        <a href="https://github.com/ahzid/NetworkingLab" class="button" target="_blank">📁 View Evidence</a>
+      </div>
+
+    </section>
+  </div>
+</body>
+</html>

@@ -58,3 +58,24 @@ body {
   border-radius: 12px;
   line-height: 1.6;
 }
+.top-bar {
+  text-align: center;
+  background-color: #004aad;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+.nav-button {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: 1px solid white;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.nav-button:hover {
+  background-color: white;
+  color: #004aad;
+}
