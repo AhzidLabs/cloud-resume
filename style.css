@@ -48,3 +48,53 @@ a:hover {
 p, li {
     font-size: 15px;
 }
+body {
+  background-color: #f2f2f2;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.resume-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 40px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1, h2 {
+  color: #003366;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-top: 40px;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 8px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+.social-buttons {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.icon-button {
+  width: 32px;
+  height: 32px;
+  margin: 0 8px;
+  transition: transform 0.2s ease;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+}
