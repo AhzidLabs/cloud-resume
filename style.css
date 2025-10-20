@@ -68,3 +68,25 @@ li {
 .icon-inline:hover {
   transform: scale(1.1);
 }
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-inline {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.icon-inline:hover {
+  transform: scale(1.1);
+}
