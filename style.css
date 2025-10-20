@@ -1,69 +1,24 @@
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    margin: 40px auto;
-    max-width: 850px;
-    line-height: 1.6;
-    color: #222;
-    background-color: #fdfdfd;
-}
-
-h1, h2, h3 {
-    color: #004aad;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-h1 {
-    font-size: 2em;
-    margin-bottom: 5px;
-}
-
-h2 {
-    border-bottom: 2px solid #004aad;
-    padding-bottom: 4px;
-    margin-top: 30px;
-}
-
-ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-.job {
-    margin-bottom: 20px;
-}
-
-a {
-    color: #004aad;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-p, li {
-    font-size: 15px;
-}
+/* Base styles */
 body {
   background-color: #f2f2f2;
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
+/* Resume container */
 .resume-container {
   max-width: 900px;
-  margin: 40px auto;
   background-color: #ffffff;
   padding: 40px;
+  margin: 40px auto;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
+/* Headings */
 h1, h2 {
   color: #003366;
   text-transform: uppercase;
@@ -75,6 +30,7 @@ h2 {
   padding-bottom: 8px;
 }
 
+/* Lists */
 ul {
   padding-left: 20px;
 }
@@ -83,18 +39,32 @@ li {
   margin-bottom: 8px;
 }
 
-.social-buttons {
+/* Contact row with icons */
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   margin-top: 10px;
-  text-align: center;
 }
 
-.icon-button {
-  width: 32px;
-  height: 32px;
-  margin: 0 8px;
+.contact-row span {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-inline {
+  width: 24px;
+  height: 24px;
   transition: transform 0.2s ease;
 }
 
-.icon-button:hover {
+.icon-inline:hover {
   transform: scale(1.1);
 }
