@@ -1,4 +1,5 @@
 # cloud-resume
+<<<<<<< HEAD
 A# 🌐 Cloud Resume Challenge — Azure Remix
 
 This project is a real-world implementation of the [Cloud Resume Challenge](https://cloudresumechallenge.dev/) using **Azure Static Website Hosting**, **Azure CDN**, and **GitHub Actions** for full CI/CD automation.
@@ -59,3 +60,7 @@ No manual uploads. No stale assets. Just clean, automated deployment.
 
 Built by **Ahzid Mahmood** — aspiring Azure engineer, detail-driven, and quietly relentless.  
 📍 Leigh-on-Sea, UK | 💼 Open to junior cloud roles across South Essex & East London
+=======
+Azure-hosted resume site with CI/CD and serverless features
+<!-- Trigger GitHub Actions -->
+>>>>>>> e34bafac71e323a45f2552e38b3ea00d75a1e35f
