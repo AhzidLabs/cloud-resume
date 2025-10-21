@@ -39,7 +39,10 @@ li {
   margin-bottom: 8px;
 }
 
-/* Contact row with icons */
+/* ---------------------------------
+   CONTACT + HEADER SECTION
+---------------------------------- */
+
 .contact-row {
   display: flex;
   justify-content: space-between;
@@ -53,70 +56,67 @@ li {
   color: #333;
 }
 
-/* Social icons */
-.social-icons {
+/* Buttons container for CV + Icons */
+.buttons {
   display: flex;
-  gap: 10px;
-}
-
-.icon-inline {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.2s ease;
-}
-
-.icon-inline:hover {
-  transform: scale(1.1);
-}
-.contact-row {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-.social-icons {
-  display: flex;
   gap: 10px;
 }
 
-.icon-inline {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.2s ease;
-}
-
-.icon-inline:hover {
-  transform: scale(1.1);
-}
+/* Blue button style (Download CV) */
 .btn {
   display: inline-block;
-  background-color: #0078d4;     /* Microsoft Azure blue */
-  color: white;
+  background-color: #0078d4; /* Azure blue */
+  color: #fff;
   padding: 8px 16px;
-  margin-right: 10px;
   border-radius: 6px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  transition: 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
-  background-color: #005a9e;     /* darker blue on hover */
-}
-.buttons {
-  text-align: center;
-  margin-top: 10px;
+  background-color: #005a9e; /* darker blue on hover */
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
+/* LinkedIn & GitHub icons */
 .icon-inline {
   width: 28px;
   height: 28px;
   vertical-align: middle;
-  margin-left: 8px;
+  transition: transform 0.2s ease;
 }
 
+.icon-inline:hover {
+  transform: scale(1.1);
+}
 
-/* Responsive design */
+/* Add consistent spacing between icons and button */
+.buttons a img {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+/* ---------------------------------
+   RESPONSIVE DESIGN
+---------------------------------- */
+
+@media (max-width: 700px) {
+  .contact-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .buttons {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    margin-bottom: 8px;
+  }
+}
