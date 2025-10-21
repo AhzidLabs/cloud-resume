@@ -1,56 +1,60 @@
-# 🧩 Error Report – Azure CDN Caching Old Version
+Error Logbook – Cloud Resume Project
+
+This file records all major issues, what caused them, and how they were fixed.  
+It helps track progress and shows real problem-solving skills during this project.
+
+---
+
+Error Report – Azure CDN Caching Old Version
 
 **Date Opened:** 2025-10-20  
 **Area:** Azure Front Door / Static Website Hosting  
 **Severity:** Medium  
-**Status:** 🧩 In Progress  
+**Status:** ✅ Resolved  
 
 ---
 
-## 🕓 Incident Timeline
+### Incident Timeline
 
-| Time (UTC) | Action / Observation | Result / Notes |
+| Time | Action / Observation | Result / Notes |
 |-------------|---------------------|----------------|
 | **2025-10-20 10:15** | Deployed updated static site files (HTML/CSS/JS) to Azure Storage. | Confirmed new files appear correctly in the storage container. |
-| **2025-10-20 10:25** | Opened public website via custom domain. | Still displaying *old version* — HTML not refreshed. |
-| **2025-10-20 10:40** | Tested direct blob URL (`https://<storage>.web.core.windows.net/index.html`). | ✅ New version loads correctly. Confirms CDN/Front Door caching. |
-| **2025-10-20 11:00** | Used **Purge** under Azure Front Door > Caching > `/*`. | Waited 5 minutes — still loading old version. |
-| **2025-10-20 11:30** | Cleared browser + tried Incognito and mobile 4G connection. | Issue persists → not a local cache problem. |
-| **2025-10-20 12:00** | Checked Rules Engine for existing cache rules. | No custom rule found; likely default 3-day TTL. |
-| **2025-10-20 13:10** | Hypothesis: Missing `Cache-Control` header at origin (Blob). | Need to add explicit caching headers or disable caching for `.html`. |
-| **2025-10-20 14:00** | Plan next test: disable AFD caching or add rule `Cache-Control: no-store` for `.html`. | Pending implementation. |
+| **2025-10-20 10:25** | Opened public website via custom domain. | Still showing *old version* — HTML not refreshed. |
+| **2025-10-20 10:40** | Tested direct blob URL (`https://storagecloudresumeahzid.z33.web.core.windows.net/index.html`). | ✅ New version loads correctly — confirmed issue is with Azure Front Door caching. |
+| **2025-10-20 11:00** | Used **Purge** option under Azure Front Door → Caching → `/*`. | Waited 5 minutes — still showing old version. |
+| **2025-10-20 11:30** | Cleared browser cache + tested Incognito + mobile 4G connection. | Same issue → not a local cache problem. |
+| **2025-10-20 12:00** | Checked AFD Rules Engine. | No custom rule found — likely default 3-day cache TTL. |
+| **2025-10-20 13:10** | Hypothesis: Missing `Cache-Control` headers at the origin (Blob). | Planned to add explicit cache rules or disable caching for `.html`. |
+| **2025-10-20 14:00** | Planned test: add `Cache-Control: no-store` for `.html`. | Pending automation update. |
+| **2025-10-21 17:00** | Implemented fix via GitHub Actions workflow. | Added purge for both custom domain + AFD endpoint. |
+| **2025-10-21 17:20** | Re-ran pipeline and tested site (`?v=120`). | ✅ New version appeared instantly — confirmed fixed. |
 
 ---
 
-## 🧠 Summary (so far)
+### Summary
 
-- Azure Front Door continues to serve cached content even after purge attempts.  
-- Direct blob link proves storage is updated.  
-- Likely cause: **AFD cache retention due to missing headers or propagation delay.**
-
----
-
-## 🚧 Next Steps
-
-1. Add a Rules Engine rule:  
-   - Condition: `Request URL ends with .html`  
-   - Action: Set response header → `Cache-Control: no-store`
-2. Redeploy and purge again.
-3. If still unresolved, disable caching temporarily to confirm Front Door as the root cause.
-4. Document outcome.
+- The website updated correctly on **Azure Storage**, but **Azure Front Door** continued to serve cached content.  
+- Browser cache and network were ruled out.  
+- Cause: **Front Door cached old HTML files** and the purge didn’t include all domains.  
+- Fix: Updated GitHub workflow to purge **both** domains on every deploy.
 
 ---
 
-## 📘 Notes
+### Root Cause
 
-- Similar issues reported by Azure community users.  
-- No service-wide Azure Front Door incidents during testing.  
-- This case will be updated as new tests are performed.
+Azure Front Door purge only targeted the default endpoint (`.azurefd.net`).  
+The custom domain (`www.ahzidcloudresume.com`) was not being cleared, leaving cached HTML in place.
 
 ---
 
-## 🔗 References
+### ✅ Resolution
 
-- [Azure Front Door caching overview](https://learn.microsoft.com/en-us/azure/frontdoor/front-door-caching)  
-- [How to purge cache in AFD](https://learn.microsoft.com/en-us/azure/frontdoor/how-to-cache-purge)  
-- [Rules Engine cache-control options](https://learn.microsoft.com/en-us/azure/frontdoor/front-door-rules-engine)
+**Workflow update added:**
+
+```bash
+az afd endpoint purge \
+  --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+  --profile-name "${{ secrets.AFD_PROFILE }}" \
+  --endpoint-name "${{ secrets.AFD_ENDPOINT }}" \
+  --domains "${{ secrets.CUSTOM_DOMAIN }}" "${{ secrets.AFD_ENDPOINT }}.azurefd.net" \
+  --content-paths '/*'
