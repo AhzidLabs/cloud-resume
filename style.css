@@ -90,3 +90,26 @@ li {
 .icon-inline:hover {
   transform: scale(1.1);
 }
+.btn {
+  display: inline-block;
+  background-color: #0078d4;     /* Microsoft Azure blue */
+  color: white;
+  padding: 8px 16px;
+  margin-right: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #005a9e;     /* darker blue on hover */
+}
+.buttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+/* Responsive design */
