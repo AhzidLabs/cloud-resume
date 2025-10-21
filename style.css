@@ -111,5 +111,12 @@ li {
   margin-top: 10px;
 }
 
+.icon-inline {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
 
 /* Responsive design */
