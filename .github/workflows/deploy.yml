@@ -1,33 +1,89 @@
-name: Deploy resume to Azure Storage Static Website
+name: Deploy static website to Azure Storage + Purge Azure Front Door
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Login to Azure
-        uses: azure/login@v1
+      # 🔹 Login to Azure using GitHub secret credentials
+      - name: Azure Login
+        uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+      # 🔹 Upload all site files to Azure Storage ($web container)
+      - name: Upload website to Azure Storage
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az account set --subscription "${{ secrets.SUBSCRIPTION_ID }}"
 
-      - name: Deploy files to static website (upload to $web)
-        env:
-          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
-          AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+            # Ensure static website hosting is enabled
+            az storage blob service-properties update \
+              --account-name "${{ secrets.STORAGE_ACCOUNT }}" \
+              --static-website --index-document index.html --404-document 404.html --auth-mode login
+
+            # Upload all files from repo to $web (overwrite old ones)
+            az storage blob upload-batch \
+              --account-name "${{ secrets.STORAGE_ACCOUNT }}" \
+              -s . \
+              -d '$web' \
+              --auth-mode login \
+              --overwrite true
+
+            # Apply cache rules automatically
+            # HTML - no-cache (always fetch fresh)
+            az storage blob update \
+              --account-name "${{ secrets.STORAGE_ACCOUNT }}" \
+              --container-name '$web' \
+              --name 'index.html' \
+              --content-cache-control 'no-cache' \
+              --auth-mode login
+
+            # CSS - 1 year cache (faster load)
+            az storage blob update \
+              --account-name "${{ secrets.STORAGE_ACCOUNT }}" \
+              --container-name '$web' \
+              --name 'style.css' \
+              --content-cache-control 'public, max-age=31536000, immutable' \
+              --auth-mode login
+
+            # JS - if exists, same rule
+            if az storage blob exists --account-name "${{ secrets.STORAGE_ACCOUNT }}" --container-name '$web' --name 'script.js' --auth-mode login --query "exists" -o tsv | grep -q true; then
+              az storage blob update \
+                --account-name "${{ secrets.STORAGE_ACCOUNT }}" \
+                --container-name '$web' \
+                --name 'script.js' \
+                --content-cache-control 'public, max-age=31536000, immutable' \
+                --auth-mode login
+            fi
+
+      # 🔹 Purge Azure Front Door cache for both domains
+      - name: Purge Azure Front Door cache
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az account set --subscription "${{ secrets.SUBSCRIPTION_ID }}"
+            az afd endpoint purge \
+              --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+              --profile-name "${{ secrets.AFD_PROFILE }}" \
+              --endpoint-name "${{ secrets.AFD_ENDPOINT }}" \
+              --domains "${{ secrets.CUSTOM_DOMAIN }}" "${{ secrets.AFD_ENDPOINT }}.azurefd.net" \
+              --content-paths '/*'
+
+      - name: Deployment summary
         run: |
-          az storage blob upload-batch --account-name "$AZURE_STORAGE_ACCOUNT" \
-            -s . -d '$web' --overwrite
-# Notes:
-# - Requires GitHub Secrets: AZURE_CREDENTIALS (service principal JSON); AZURE_STORAGE_ACCOUNT; AZURE_STORAGE_KEY
-# - Create these under Settings -> Secrets and variables -> Actions in your GitHub repo
-# - Do NOT commit credentials into this repository
+          echo "✅ Deployment completed!"
+          echo "🌐 Custom domain: https://${{ secrets.CUSTOM_DOMAIN }}"
+          echo "🗂️  Storage site: https://${{ secrets.STORAGE_ACCOUNT }}.z33.web.core.windows.net/"
