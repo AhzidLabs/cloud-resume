@@ -123,14 +123,15 @@ li {
 
 .live-badge {
   text-align: center;
-  color: #607d8b;
-  opacity: 0.75;
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 1.2px;
-  margin-top: 10px;
-  margin-bottom: 0;
+  color: #555555;      /* darker grey tone */
+  font-weight: 400;    /* removes boldness */
+  font-size: 0.85rem;  /* smaller and subtle */
+  letter-spacing: 1px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  border: none;        /* removes any inherited underline/border */
 }
+
 
 
 
