@@ -122,14 +122,16 @@ li {
 }
 
 .live-badge {
-  display: block;
   text-align: center;
-  color: #90a4c0;          /* soft azure-grey tone */
-  opacity: 0.45;           /* faint watermark look */
-  font-weight: 500;
-  font-size: 0.9rem;       /* smaller size for subtle look */
-  letter-spacing: 1.5px;
+  color: #607d8b;          /* darker blue-grey tone */
+  opacity: 0.75;           /* more visible than before */
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 1.2px;
   margin: 20px auto 0 auto;
   width: 100%;
+  position: relative;
+  top: 10px;               /* fine-tune vertical placement */
 }
+
 
