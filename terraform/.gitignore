@@ -1,7 +1,0 @@
-.terraform/
-*.tfstate
-*.tfstate.*
-crash.log
-*.lock.hcl
-apply-log.txt
-
