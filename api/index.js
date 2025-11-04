@@ -2,9 +2,7 @@ const { TableClient, AzureNamedKeyCredential } = require("@azure/data-tables");
 
 module.exports = async function (context, req) {
   const tableName = process.env.STORAGE_TABLE_NAME || "visitorCount";
-
-  // derive account creds from connection string
-  const cs = process.env.AzureWebJobsStorage;
+  const cs = process.env.AzureWebJobsStorage;               // from app settings
   const accountName = /AccountName=([^;]+)/.exec(cs)[1];
   const accountKey  = /AccountKey=([^;]+)/.exec(cs)[1];
 

@@ -160,6 +160,56 @@ li {
   .counter-badge{box-shadow:0 6px 16px rgba(0,0,0,.35);}
 }
 
+/* ---- Topbar layout (grid = stable alignment on wrap) ---- */
+.topbar{
+  display:grid;
+  grid-template-columns: 1fr auto;     /* identity left, actions right */
+  align-items:center;                   /* vertical center */
+  gap:14px;
+  row-gap:10px;
+  min-width:0;                          /* prevent overflow on narrow screens */
+  margin-bottom:8px;
+}
+
+/* identity block never squeezes the actions */
+.identity{min-width:0}
+.name{margin:0; font-size:2rem; line-height:1.2}
+.meta{margin:.25rem 0 0; color:#475569}
+
+/* actions are a row of consistent-height buttons */
+.actions{
+  display:flex; flex-wrap:wrap; gap:10px;
+  justify-content:flex-end; align-items:center;
+}
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 14px; height:40px;       /* fixed height = perfect alignment */
+  border-radius:999px; font-weight:600; text-decoration:none;
+  border:1px solid rgba(2,6,23,.10); background:#fff; color:#0f172a;
+  line-height:1;                         /* prevents tall buttons on wrap */
+  white-space:nowrap;                    /* keeps labels on one line */
+}
+.btn svg{flex:0 0 16px}
+.btn:hover{box-shadow:0 0 0 4px #bae6fd inset}
+.btn-primary{background:linear-gradient(135deg,#0ea5e9,#7c3aed); color:#fff; border:none}
+
+/* counter (optional) */
+.counter{display:flex; align-items:center; gap:10px; margin:6px 0 0; color:#475569}
+.counter-badge{
+  display:inline-block; padding:6px 14px; border-radius:9999px; color:#fff;
+  background:linear-gradient(135deg,#0ea5e9,#7c3aed); font-weight:700; letter-spacing:.5px;
+  box-shadow:0 6px 16px rgba(124,58,237,.25)
+}
+
+/* ---- Responsive: stack cleanly under 720px ---- */
+@media (max-width: 720px){
+  .topbar{
+    grid-template-columns: 1fr;      /* stack */
+    justify-items:start;             /* keep left aligned */
+  }
+  .actions{justify-content:flex-start}
+  .name{font-size:1.6rem}
+}
 
 
 

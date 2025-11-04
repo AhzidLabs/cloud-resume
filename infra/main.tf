@@ -32,15 +32,6 @@ resource "azurerm_storage_table" "visitors" {
 }
 
 #--------------------------------------------------------------
-# App Insights (nice to have)
-resource "azurerm_application_insights" "ai" {
-  name                = "ahzid-visitor-ai"
-  location            = data.azurerm_resource_group.rg.location
-  resource_group_name = data.azurerm_resource_group.rg.name
-  application_type    = "web"
-}
-
-#--------------------------------------------------------------
 # Serverless plan for the Function
 resource "azurerm_service_plan" "plan" {
   name                = "ahzid-func-plan"
@@ -67,7 +58,6 @@ resource "azurerm_linux_function_app" "func" {
   app_settings = {
     AzureWebJobsStorage             = data.azurerm_storage_account.sa.primary_connection_string
     STORAGE_TABLE_NAME              = azurerm_storage_table.visitors.name
-    APPINSIGHTS_INSTRUMENTATIONKEY  = azurerm_application_insights.ai.instrumentation_key
     WEBSITE_RUN_FROM_PACKAGE        = "1"
   }
 }

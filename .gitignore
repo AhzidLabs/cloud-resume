@@ -1,0 +1,12 @@
+﻿
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+

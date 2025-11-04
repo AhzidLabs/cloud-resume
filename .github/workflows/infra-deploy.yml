@@ -26,11 +26,25 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Terraform Init/Apply
+      - name: Terraform Validate/Plan (diagnostic)
+        env:
+          TF_LOG: INFO
         working-directory: infra
         run: |
-          terraform init
-          terraform apply -auto-approve
+          set -euo pipefail
+          terraform fmt -check
+          terraform init -input=false
+          terraform validate
+          terraform plan -no-color -out=tfplan || { echo "---- TF PLAN FAILED (showing logs) ----"; exit 1; }
+          terraform show -no-color tfplan
+
+      - name: Terraform Apply (diagnostic)
+        env:
+          TF_LOG: INFO
+        working-directory: infra
+        run: |
+          set -euo pipefail
+          terraform apply -no-color -auto-approve tfplan
 
       # Package function as zip and deploy to Function App
       - name: Zip function
