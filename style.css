@@ -2,8 +2,10 @@
 body {
   background-color: #f2f2f2;
   font-family: 'Segoe UI', sans-serif;
+  color: #f8fafc;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
   display: flex;
   justify-content: center;
 }
@@ -165,10 +167,10 @@ li {
   display:grid;
   grid-template-columns: 1fr auto;     /* identity left, actions right */
   align-items:center;                   /* vertical center */
-  gap:14px;
-  row-gap:10px;
+  gap:12px;
+  row-gap:12px;
   min-width:0;                          /* prevent overflow on narrow screens */
-  margin-bottom:8px;
+  margin-bottom:16px;
 }
 
 /* identity block never squeezes the actions */
@@ -182,15 +184,14 @@ li {
   justify-content:flex-end; align-items:center;
 }
 .btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:10px 14px; height:40px;       /* fixed height = perfect alignment */
-  border-radius:999px; font-weight:600; text-decoration:none;
-  border:1px solid rgba(2,6,23,.10); background:#fff; color:#0f172a;
-  line-height:1;                         /* prevents tall buttons on wrap */
-  white-space:nowrap;                    /* keeps labels on one line */
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 16px;border-radius:999px;
+  font-weight:600;text-decoration:none;
+  border:1px solid rgba(2,6,23,.08);background:#fff;color:#0f172a;
+  transition: 0.2s ease;
 }
-.btn svg{flex:0 0 16px}
-.btn:hover{box-shadow:0 0 0 4px #bae6fd inset}
+.btn:hover{box-shadow:0 0 0 4px #bae6fd inset;}
+.btn-primary{background:linear-gradient(135deg,#0ea5e9,#7c3aed);color:#fff;border:none;}
 .btn-primary{background:linear-gradient(135deg,#0ea5e9,#7c3aed); color:#fff; border:none}
 
 /* counter (optional) */
@@ -209,6 +210,13 @@ li {
   }
   .actions{justify-content:flex-start}
   .name{font-size:1.6rem}
+}
+.footer{text-align:center;margin-top:40px;font-size:.9rem;color:#475569;}
+
+@media(max-width: 720px){
+  .topbar{grid-template-columns: 1fr;}
+  .actions{justify-content:flex-start;}
+  body{padding: 0 16px;}
 }
 
 
