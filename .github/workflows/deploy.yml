@@ -80,7 +80,7 @@ jobs:
               --profile-name "${{ secrets.AFD_PROFILE }}" \
               --endpoint-name "${{ secrets.AFD_ENDPOINT }}" \
               --domains "${{ secrets.CUSTOM_DOMAIN }}" "${{ secrets.AFD_ENDPOINT }}.azurefd.net" \
-              --content-paths '/*'
+              --content-paths '/*' || echo "AFD purge blocked; continuing"
 
 
       - name: Deployment summary

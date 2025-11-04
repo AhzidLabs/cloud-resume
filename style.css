@@ -138,6 +138,28 @@ li {
 .tab-panel{display:none}
 .tab-panel.show{display:block}
 
+.counter{
+  text-align:center;
+  color:#333;
+  margin:24px 0 8px;
+  font-weight:600;
+  letter-spacing:0.2px;
+}
+.counter-badge{
+  display:inline-block;
+  margin-left:8px;
+  padding:6px 14px;
+  border-radius:9999px;
+  background:linear-gradient(135deg,#0066cc,#7b61ff);
+  color:#fff;
+  font-weight:700;
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme: dark){
+  .counter{color:#ddd;}
+  .counter-badge{box-shadow:0 6px 16px rgba(0,0,0,.35);}
+}
+
 
 
 
