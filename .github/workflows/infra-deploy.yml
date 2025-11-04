@@ -1,0 +1,50 @@
+name: Infra (Terraform) + Function package
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "infra/**"
+      - "api/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  infra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init/Apply
+        working-directory: infra
+        run: |
+          terraform init
+          terraform apply -auto-approve
+
+      # Package function as zip and deploy to Function App
+      - name: Zip function
+        run: |
+          cd api
+          zip -r function.zip GetVisitorCount
+          echo "ZIPPED=$(pwd)/function.zip" >> $GITHUB_ENV
+
+      - name: Upload package
+        run: |
+          # Get function host from terraform state (simple grep)
+          HOST=$(terraform -chdir=infra output -raw function_hostname)
+          # publish via zip deploy (Kudu)
+          az webapp deployment source config-zip \
+            --resource-group rg-cloudresume-ahzidmahmood \
+            --name ahzid-visitor-func \
+            --src "$ZIPPED"

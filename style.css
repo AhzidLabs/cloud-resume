@@ -132,6 +132,12 @@ li {
   border: none;        /* removes any inherited underline/border */
 }
 
+.tabs{display:flex;gap:.5rem;justify-content:center;margin:20px 0}
+.tab-btn{background:#003366;color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
+.tab-btn:hover{background:#0055a3}
+.tab-panel{display:none}
+.tab-panel.show{display:block}
+
 
 
 
