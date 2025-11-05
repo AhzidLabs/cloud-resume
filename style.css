@@ -218,6 +218,11 @@ li {
   .actions{justify-content:flex-start;}
   body{padding: 0 16px;}
 }
+/* Force readable text color for light background */
+html, body {
+  background-color: #f8fafc;   /* light gray background */
+  color: #0f172a;              /* dark navy text */
+}
 
 
 
