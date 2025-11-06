@@ -1,12 +1,12 @@
-﻿
-# Terraform
+﻿# Terraform
 **/.terraform/
-*.tfstate
-*.tfstate.*
+**/terraform.tfstate
+**/terraform.tfstate.*
+**/.terraform.tfstate.lock.info
+**/crash.log
 
+# Node
+visitor-func/node_modules/
 
-# Terraform
-**/.terraform/
-*.tfstate
-*.tfstate.*
-
+# Local Azure Functions settings (do not commit)
+visitor-func/local.settings.json
