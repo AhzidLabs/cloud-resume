@@ -4,16 +4,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="UTF-8" />
   <title>CV - Ahzid Mahmood</title>
-
   <meta name="description" content="Live Azure Cloud Resume — deployed via GitHub Actions, Azure Static Web Apps, and Front Door CDN by Ahzid Mahmood.">
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-
   <link rel="stylesheet" href="style.css?v=1.2.0" />
 </head>
 <body>
   <div class="resume-container">
     <h2 class="live-badge">Live Cloud Resume — Developed & Deployed on Microsoft Azure</h2>
-
     <!-- TOP BAR -->
     <header class="topbar">
       <div class="identity">
@@ -23,7 +20,6 @@
           <a href="mailto:Ahzid.Mahmood@outlook.com">Ahzid.Mahmood@outlook.com</a>
         </p>
       </div>
-
       <nav class="actions" aria-label="Profile links">
         <a class="btn btn-primary" href="Ahzid Mahmood CV 2025.pdf" download>
           <!-- download icon -->
@@ -42,15 +38,12 @@
         </a>
       </nav>
     </header>
-
     <p class="counter">👁 Visitors <span id="visitorCounter" class="counter-badge">…</span></p>
-
     <!-- ========== SUMMARY ========== -->
     <section id="summary">
       <h2>SUMMARY</h2>
       <p>Motivated IT Support & Cloud Enthusiast with Microsoft certifications (AZ-900 and AZ-104 in progress), experienced in Azure Virtual Machines, Microsoft Entra ID, and Microsoft 365 administration. Adept at troubleshooting, RBAC configuration, and governance best practices to ensure secure and compliant environments. Known for delivering efficient support, improving system reliability, and bridging technical solutions with business objectives and user experience. One of my recent projects, Cloud Resume Remix – Azure Static Web Apps, showcases CI/CD automation, Azure CDN troubleshooting, and custom domain configuration within a production-style Azure environment.</p>
     </section>
-
     <!-- ========== SKILLS ========== -->
     <section id="skills">
       <h2>CORE SKILLS</h2>
@@ -61,7 +54,6 @@
         <li><strong>Business & Soft Skills:</strong> Business awareness, customer-focused communication, teamwork, analytical thinking, problem-solving, time management, stakeholder support, adaptability, and understanding how IT enables business goals.</li>
       </ul>
     </section>
-
     <!-- ========== HANDS-ON EXPERIENCE ========== -->
     <section id="azure-experience">
       <h2>HANDS-ON AZURE EXPERIENCE</h2>
@@ -75,11 +67,9 @@
         <li>Enhanced monitoring by enabling diagnostic settings and fine-tuning action groups.</li>
       </ul>
     </section>
-
     <!-- ========== WORK EXPERIENCE ========== -->
     <section id="experience">
       <h2>WORK EXPERIENCE</h2>
-
       <div class="job">
         <h3>Customer Assistant – Tesco Plc</h3>
         <p><em>Feb 2024 – Present | Leigh-on-Sea, Essex</em></p>
@@ -89,7 +79,6 @@
           <li>Collaborated with colleagues to achieve daily store targets in a fast-paced environment.</li>
         </ul>
       </div>
-
       <div class="job">
         <h3>Recruitment Consultant & IT Support – OCL Group</h3>
         <p><em>Apr 2020 – Feb 2024 | Benfleet, Essex</em></p>
@@ -99,7 +88,6 @@
           <li>Improved efficiency by restructuring SharePoint libraries for better access control.</li>
         </ul>
       </div>
-
       <div class="job">
         <h3>Technical Support – Belfair PC Care</h3>
         <p><em>Dec 2022 – Dec 2023 | Leigh-on-Sea, Essex</em></p>
@@ -109,7 +97,6 @@
           <li>Provided client training to improve IT confidence and reduce repeat issues.</li>
         </ul>
       </div>
-
       <div class="job">
         <h3>Technical Sales – Vibro Plant GroundForce</h3>
         <p><em>May 2019 – Apr 2020 | London</em></p>
@@ -118,7 +105,6 @@
         </ul>
       </div>
     </section>
-
     <!-- ========== PROJECTS ========== -->
     <section id="projects">
       <h2>PROJECTS (2023–PRESENT)</h2>
@@ -130,7 +116,6 @@
         <li><strong>Microsoft 365 Collaboration Lab:</strong> Configured Teams, SharePoint, and OneDrive with secure sharing and access policies.</li>
       </ul>
     </section>
-
     <!-- ========== CERTIFICATIONS ========== -->
     <section id="certifications">
       <h2>CERTIFICATIONS & TRAINING</h2>
@@ -144,7 +129,6 @@
         <li>City & Guilds: Support, Install, Configure Equipment & Operating Systems</li>
       </ul>
     </section>
-
     <!-- ========== EDUCATION ========== -->
     <section id="education">
       <h2>PROFESSIONAL EDUCATION</h2>
@@ -153,7 +137,6 @@
         <li>South Essex College – Access to Higher Education in Business Studies (2010 – 2011)</li>
       </ul>
     </section>
-
     <!-- ========== ADDITIONAL INFO ========== -->
     <section id="additional">
       <h2>ADDITIONAL INFORMATION</h2>
@@ -164,14 +147,12 @@
         <li>Full right to work in the UK.</li>
       </ul>
     </section>
-
     <!-- ========== TABS (Resume / Code / Projects) ========== -->
     <div class="tabs">
       <button class="tab-btn" onclick="openTab('t1')">Resume</button>
       <button class="tab-btn" onclick="openTab('t2')">Code Samples</button>
       <button class="tab-btn" onclick="openTab('t3')">Projects</button>
     </div>
-
     <div id="t1" class="tab-panel show">
       <iframe src="Ahzid-Mahmood-CV.pdf" style="width:100%;height:600px;border:0"></iframe>
     </div>
@@ -183,17 +164,16 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
       <p><a href="https://github.com/AhzidLabs" target="_blank" rel="noopener">See all projects on GitHub →</a></p>
     </div>
   </div>
-
-  <!-- ========== SCRIPTS ========== -->
+   <!-- ========== SCRIPTS ========== -->
   <script>
     // Visitor counter
     (async () => {
       try {
         const r = await fetch("https://ahzid-visitor-func.azurewebsites.net/api/GetVisitorCount");
         const d = await r.json();
-        document.getElementById("visitorCounter").textContent = d.count ?? "—";
+        document.getElementById("visitorCounter").textContent = d.visitorCount ?? "—";
       } catch (e) {
-        console.error(e);
+        console.error("Error fetching visitor count:", e);
       }
     })();
 
@@ -207,5 +187,8 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
   <footer class="footer">
     <p>© 2025 Ahzid Mahmood  |  Built & hosted on Microsoft Azure</p>
   </footer>
+</body>
+
+</html>
 </body>
 </html>
