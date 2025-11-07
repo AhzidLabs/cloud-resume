@@ -4,9 +4,19 @@
 **/terraform.tfstate.*
 **/.terraform.tfstate.lock.info
 **/crash.log
+**/crash.*.log
 
-# Node
-visitor-func/node_modules/
+# Node.js dependencies
+node_modules/
 
-# Local Azure Functions settings (do not commit)
-visitor-func/local.settings.json
+# Local Azure Functions settings (do not commit secrets)
+local.settings.json
+
+# Editor / IDE clutter
+.vscode/
+*.swp
+*.swo
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
