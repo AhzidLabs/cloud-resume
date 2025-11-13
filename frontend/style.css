@@ -122,24 +122,30 @@ li { margin-bottom: 8px; }
 .tab-panel.show{display:block}
 
 /* Counter (single definition) */
+/* Counter (single definition) */
 .counter{
   display:flex;
+  justify-content:center;      /* center it */
   align-items:center;
   gap:10px;
-  margin:24px 0 8px;
-  color:#475569;
-  font-weight:600;
-  letter-spacing:0.2px;
+  margin:24px 0 16px;
+  color:#0f172a;               /* darker text */
+  font-weight:700;
+  letter-spacing:0.3px;
+  font-size:0.95rem;           /* slightly larger label */
 }
+
 .counter-badge{
   display:inline-block;
-  padding:6px 14px;
+  padding:8px 18px;            /* bigger pill */
   border-radius:9999px;
-  background:linear-gradient(135deg,#0066cc,#7b61ff);
+  background:linear-gradient(135deg,#0ea5e9,#7c3aed);
   color:#fff;
-  font-weight:700;
-  box-shadow:0 6px 16px rgba(0,0,0,.12);
+  font-weight:800;
+  font-size:1rem;
+  box-shadow:0 6px 18px rgba(15,23,42,.25);
 }
+
 @media (prefers-color-scheme: dark){
   .counter{color:#ddd;}
   .counter-badge{box-shadow:0 6px 16px rgba(0,0,0,.35);}
