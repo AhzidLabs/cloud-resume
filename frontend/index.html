@@ -164,31 +164,33 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
       <p><a href="https://github.com/AhzidLabs" target="_blank" rel="noopener">See all projects on GitHub →</a></p>
     </div>
   </div>
-   <!-- ========== SCRIPTS ========== -->
-  <script>
-    // Visitor counter
-    (async () => {
-      try {
-        const r = await fetch("https://ahzid-visitor-func.azurewebsites.net/api/GetVisitorCount");
-        const d = await r.json();
-        document.getElementById("visitorCounter").textContent = d.visitorCount ?? "—";
-      } catch (e) {
-        console.error("Error fetching visitor count:", e);
-      }
-    })();
+<!-- ========== SCRIPTS ========== -->
+<script>
+  // Visitor counter
+ async function loadVisitorCount() {
+  try {
+    const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/VisitorCounter");
+    const data = await res.json();
+    document.getElementById("visitorCount").innerText = data.count;
+  } catch (err) {
+    console.error("Error fetching visitor count:", err);
+    document.getElementById("visitorCount").innerText = "Error";
+  }
+}
 
-    // Tab logic
-    function openTab(id) {
-      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("show"));
-      document.getElementById(id).classList.add("show");
-    }
-  </script>
+loadVisitorCount();
 
-  <footer class="footer">
-    <p>© 2025 Ahzid Mahmood  |  Built & hosted on Microsoft Azure</p>
-  </footer>
-</body>
+  // Tab logic
+  function openTab(id) {
+    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("show"));
+    document.getElementById(id).classList.add("show");
+  }
+</script>
 
-</html>
+<footer class="footer">
+  <p>© 2025 Ahzid Mahmood  |  Built & hosted on Microsoft Azure</p>
+</footer>
+
+<p>You are visitor number: <span id="visitor-count">Loading...</span></p>
 </body>
 </html>
