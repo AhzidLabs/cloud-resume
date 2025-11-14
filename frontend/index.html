@@ -6,10 +6,10 @@
   <title>CV - Ahzid Mahmood</title>
   <meta name="description" content="Live Azure Cloud Resume — deployed via GitHub Actions, Azure Static Web Apps, and Front Door CDN by Ahzid Mahmood.">
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="stylesheet" href="style.css?v=1.2.1" />
+  <link rel="stylesheet" href="style.css?v=1.3.0" />
 </head>
 <body>
-  <!-- TOP AZURE SYSTEM STATUS CARD -->
+  <!-- TOP AZURE SYSTEM STATUS CARD (full-width, edge to edge) -->
   <section class="top-status-card">
     <div class="status-title">
       <span class="icon">☁️</span>
@@ -38,8 +38,16 @@
   </section>
 
   <div class="resume-container">
-    <h2 class="live-badge">Live Cloud Resume — Developed & Deployed on Microsoft Azure</h2>
-    <!-- TOP BAR -->
+    <!-- Top strip -->
+    <h2 class="live-badge">LIVE CLOUD RESUME — DEVELOPED & DEPLOYED ON MICROSOFT AZURE</h2>
+
+    <!-- Visitor counter: small, dark Azure, centered -->
+    <p class="counter">
+      👁 Visitors
+      <span id="visitor-count" class="counter-badge">…</span>
+    </p>
+
+    <!-- TOP BAR: name, email, buttons, theme toggle -->
     <header class="topbar">
       <div class="identity">
         <h1 class="name">AHZID MAHMOOD</h1>
@@ -50,25 +58,34 @@
       </div>
       <nav class="actions" aria-label="Profile links">
         <a class="btn btn-primary" href="Ahzid Mahmood CV 2025.pdf" download>
-          <!-- download icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v10m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"
+                  fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           Download CV
         </a>
         <a class="btn" href="https://www.linkedin.com/in/ahzid" target="_blank" rel="noopener">
-          <!-- LinkedIn icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9h3v9H6zM7.5 6.5A1.5 1.5 0 1 0 7.5 3.5 1.5 1.5 0 0 0 7.5 6.5zM11 9h2.9v1.3h.1c.4-.8 1.4-1.7 2.9-1.7 3.1 0 3.7 2 3.7 4.6V18h-3v-4c0-1 0-2.4-1.5-2.4S15 12.8 15 14v4h-3z" fill="currentColor"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9h3v9H6zM7.5 6.5A1.5 1.5 0 1 0 7.5 3.5 1.5 1.5 0 0 0 7.5 6.5zM11 9h2.9v1.3h.1c.4-.8 1.4-1.7 2.9-1.7 3.1 0 3.7 2 3.7 4.6V18h-3v-4c0-1 0-2.4-1.5-2.4S15 12.8 15 14v4h-3z"
+                  fill="currentColor"/>
+          </svg>
           LinkedIn
         </a>
         <a class="btn" href="https://github.com/AhzidLabs" target="_blank" rel="noopener">
-          <!-- GitHub icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.5-1.5-1.9-1.5-1.9-1.3-.9.1-.9.1-.9 1.4.1 2.2 1.5 2.2 1.5 1.2 2.2 3.3 1.6 4.1 1.2.1-.9.5-1.6.9-2-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.7 5.6-5.3 5.9.6.5 1 1.4 1 2.8v4.1c0 .3.2.8.9.6A12 12 0 0 0 12 .5" fill="currentColor"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.5-1.5-1.9-1.5-1.9-1.3-.9.1-.9.1-.9 1.4.1 2.2 1.5 2.2 1.5 1.2 2.2 3.3 1.6 4.1 1.2.1-.9.5-1.6.9-2-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.7 5.6-5.3 5.9.6.5 1 1.4 1 2.8v4.1c0 .3.2.8.9.6A12 12 0 0 0 12 .5"
+                  fill="currentColor"/>
+          </svg>
           GitHub
         </a>
+
+        <!-- Day / Night mode toggle (top-right) -->
+        <button class="btn theme-toggle" type="button" id="theme-toggle" aria-label="Toggle theme">
+          <span id="theme-icon">🌙</span>
+        </button>
       </nav>
     </header>
-
-    <!-- Single clean visitor counter -->
-    <p class="counter">👁 Visitors <span id="visitor-count" class="counter-badge">…</span></p>
 
     <!-- ========== SUMMARY ========== -->
     <section id="summary">
@@ -189,16 +206,99 @@
     <!-- ========== TABS (Resume / Code / Projects) ========== -->
     <div class="tabs">
       <button class="tab-btn" onclick="openTab('t1')">Resume</button>
-      <button class="tab-btn" onclick="openTab('t2')">Code Samples</button>
+      <button class="tab-btn" onclick="openTab('t2')">Code (VS Code View)</button>
       <button class="tab-btn" onclick="openTab('t3')">Projects</button>
     </div>
+
+    <!-- Resume PDF -->
     <div id="t1" class="tab-panel show">
       <iframe src="Ahzid-Mahmood-CV.pdf" style="width:100%;height:600px;border:0"></iframe>
     </div>
+
+    <!-- VS Code-style code view -->
     <div id="t2" class="tab-panel">
-      <pre><code>// Example: Terraform resource
-resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pre>
+      <div class="code-layout">
+        <aside class="code-sidebar">
+          <div class="code-title">cloud-resume</div>
+          <ul class="file-tree">
+            <li><span class="folder">.github</span>
+              <ul>
+                <li><span class="folder">workflows</span>
+                  <ul>
+                    <li><span class="file">deploy.yml</span></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span class="folder">api</span>
+              <ul>
+                <li><span class="file">AnalyticsLogger/index.js</span></li>
+                <li><span class="file">SystemOverview/index.js</span></li>
+              </ul>
+            </li>
+            <li><span class="folder">error-logbook</span></li>
+            <li><span class="folder">infra</span>
+              <ul>
+                <li><span class="file">main.tf</span></li>
+              </ul>
+            </li>
+            <li><span class="file active-file">index.html</span></li>
+            <li><span class="file">style.css</span></li>
+          </ul>
+        </aside>
+
+        <section class="code-main">
+          <div class="code-header">
+            <div class="code-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="code-filename">index.html</span>
+          </div>
+          <pre class="code-block"><code>
+<span class="token-tag">&lt;script&gt;</span>
+  <span class="token-comment">// AnalyticsLogger - Azure Function (frontend usage)</span>
+  <span class="token-keyword">const</span> API_URL <span class="token-operator">=</span> <span class="token-string">"https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger"</span>;
+  <span class="token-keyword">const</span> VISIT_FLAG_KEY <span class="token-operator">=</span> <span class="token-string">"ahzid-cloudresume-has-counted"</span>;
+  <span class="token-keyword">const</span> LAST_COUNT_KEY <span class="token-operator">=</span> <span class="token-string">"ahzid-cloudresume-last-count"</span>;
+
+  <span class="token-keyword">async function</span> <span class="token-function">loadVisitorCount</span>() {
+    <span class="token-keyword">const</span> counterElement <span class="token-operator">=</span> document.<span class="token-function">getElementById</span>(<span class="token-string">"visitor-count"</span>);
+    <span class="token-keyword">if</span> (<span class="token-operator">!</span>counterElement) <span class="token-keyword">return</span>;
+
+    <span class="token-keyword">const</span> hasCounted <span class="token-operator">=</span> sessionStorage.<span class="token-function">getItem</span>(VISIT_FLAG_KEY);
+
+    <span class="token-keyword">try</span> {
+      <span class="token-keyword">if</span> (<span class="token-operator">!</span>hasCounted) {
+        <span class="token-comment">// First visit in this tab - log + increment</span>
+        <span class="token-keyword">const</span> res <span class="token-operator">=</span> <span class="token-keyword">await</span> <span class="token-function">fetch</span>(API_URL);
+        <span class="token-keyword">const</span> data <span class="token-operator">=</span> <span class="token-keyword">await</span> res.<span class="token-function">json</span>();
+        <span class="token-keyword">const</span> total <span class="token-operator">=</span> data?.stats?.totalVisits ?? <span class="token-string">"—"</span>;
+
+        counterElement.innerText <span class="token-operator">=</span> total;
+        sessionStorage.<span class="token-function">setItem</span>(VISIT_FLAG_KEY, <span class="token-string">"true"</span>);
+        sessionStorage.<span class="token-function">setItem</span>(LAST_COUNT_KEY, String(total));
+      } <span class="token-keyword">else</span> {
+        <span class="token-comment">// Reuse stored value for this tab</span>
+        <span class="token-keyword">const</span> last <span class="token-operator">=</span> sessionStorage.<span class="token-function">getItem</span>(LAST_COUNT_KEY);
+        counterElement.innerText <span class="token-operator">=</span> last ?? <span class="token-string">"…"</span>;
+      }
+    } <span class="token-keyword">catch</span> (err) {
+      console.<span class="token-function">error</span>(<span class="token-string">"Error fetching visitor count:"</span>, err);
+      counterElement.innerText <span class="token-operator">=</span> <span class="token-string">"Error"</span>;
+    }
+  }
+
+  window.<span class="token-function">addEventListener</span>(<span class="token-string">"load"</span>, loadVisitorCount);
+<span class="token-tag">&lt;/script&gt;</span>
+</code></pre>
+
+        </section>
+      </div>
     </div>
+
+    <!-- Projects tab -->
     <div id="t3" class="tab-panel">
       <p><a href="https://github.com/AhzidLabs" target="_blank" rel="noopener">See all projects on GitHub →</a></p>
     </div>
@@ -209,36 +309,28 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
     const API_URL = "https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger";
     const VISIT_FLAG_KEY = "ahzid-cloudresume-has-counted";
     const LAST_COUNT_KEY = "ahzid-cloudresume-last-count";
+    const THEME_KEY = "ahzid-theme";
 
     // Visitor counter with per-tab session control
     async function loadVisitorCount() {
       const counterElement = document.getElementById("visitor-count");
-      if (!counterElement) {
-        console.error("Error: #visitor-count element not found");
-        return;
-      }
+      if (!counterElement) return;
 
       const hasCounted = sessionStorage.getItem(VISIT_FLAG_KEY);
 
       try {
         if (!hasCounted) {
-          // First time in this tab → call API and increment
           const res = await fetch(API_URL);
           const data = await res.json();
-
           const total = data?.stats?.totalVisits ?? "—";
           counterElement.innerText = total;
-
-          // Mark this tab as already counted
           sessionStorage.setItem(VISIT_FLAG_KEY, "true");
           sessionStorage.setItem(LAST_COUNT_KEY, String(total));
         } else {
-          // Already counted in this tab → reuse last value
           const last = sessionStorage.getItem(LAST_COUNT_KEY);
           if (last) {
             counterElement.innerText = last;
           } else {
-            // Fallback if storage got cleared
             const res = await fetch(API_URL);
             const data = await res.json();
             const total = data?.stats?.totalVisits ?? "—";
@@ -276,29 +368,57 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
 
         if (eventsEl) eventsEl.innerText = events.toLocaleString();
         if (uniqueEl) uniqueEl.innerText = unique.toLocaleString();
-
-        if (typeof errorRate === "number") {
-          errorsEl.innerText = errorRate.toString() + "%";
-        } else {
-          errorsEl.innerText = errorRate; // already includes %
+        if (errorsEl) {
+          errorsEl.innerText =
+            typeof errorRate === "number" ? errorRate.toString() + "%" : errorRate;
         }
       } catch (err) {
         console.error("Error fetching top stats:", err);
       }
     }
 
-    // Run when page finishes loading
-    window.addEventListener("load", loadVisitorCount);
-    window.addEventListener("load", loadTopStats);
+    // Theme helpers
+    function applyTheme(mode) {
+      const body = document.body;
+      const icon = document.getElementById("theme-icon");
+      const isDark = mode === "dark";
+      body.classList.toggle("dark-mode", isDark);
+      if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+    }
 
-    // Refresh top stats every 30 seconds
-    setInterval(loadTopStats, 30000);
+    function initTheme() {
+      const saved = localStorage.getItem(THEME_KEY);
+      const prefersDark = window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const mode = saved || (prefersDark ? "dark" : "light");
+      applyTheme(mode);
+    }
 
-    // Tab logic
+    function toggleTheme() {
+      const isDark = document.body.classList.contains("dark-mode");
+      const newMode = isDark ? "light" : "dark";
+      localStorage.setItem(THEME_KEY, newMode);
+      applyTheme(newMode);
+    }
+
+    // Tabs
     function openTab(id) {
       document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("show"));
       document.getElementById(id).classList.add("show");
     }
+
+    // Init
+    window.addEventListener("load", () => {
+      initTheme();
+      loadVisitorCount();
+      loadTopStats();
+
+      const toggleBtn = document.getElementById("theme-toggle");
+      if (toggleBtn) toggleBtn.addEventListener("click", toggleTheme);
+    });
+
+    // Refresh top stats every 30 seconds
+    setInterval(loadTopStats, 30000);
   </script>
 
   <footer class="footer">

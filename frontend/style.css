@@ -3,15 +3,14 @@
    ============================ */
 
 html, body {
-  background-color: #eff3f8;   /* slightly softer than pure grey */
-  color: #0f172a;              /* readable dark text */
+  background-color: #eff3f8;
+  color: #0f172a;
   font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.6;
 }
 
-/* Main resume card */
 .resume-container {
   max-width: 900px;
   background-color: #ffffff;
@@ -35,72 +34,8 @@ h2 {
 }
 
 /* Lists */
-ul {
-  padding-left: 20px;
-}
-li {
-  margin-bottom: 8px;
-}
-
-/* ============================
-   CONTACT / LEGACY ROW (SAFE TO KEEP)
-   ============================ */
-
-.contact-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-.contact-row span {
-  font-size: 14px;
-  color: #333;
-}
-
-/* Container for CV button + icons (if used) */
-.buttons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Base button style (generic) */
-.btn {
-  display: inline-block;
-  background-color: #0078d4; /* Azure blue */
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  border: none;
-}
-
-.btn:hover {
-  background-color: #005a9e; /* darker blue on hover */
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
-  text-decoration: none;
-}
-
-/* Icons (if you ever use <img> icons again) */
-.icon-inline {
-  width: 28px;
-  height: 28px;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
-}
-.icon-inline:hover {
-  transform: scale(1.1);
-}
-
-.buttons a img {
-  margin: 0 4px;
-}
+ul { padding-left: 20px; }
+li { margin-bottom: 8px; }
 
 /* ============================
    TOPBAR (NAME + ACTION BUTTONS)
@@ -108,17 +43,13 @@ li {
 
 .topbar {
   display: grid;
-  grid-template-columns: 1fr auto;     /* identity left, actions right */
-  align-items: center;
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;       /* align buttons with email line */
   gap: 12px;
-  row-gap: 12px;
-  min-width: 0;
   margin-bottom: 16px;
 }
 
-.identity {
-  min-width: 0;
-}
+.identity { min-width: 0; }
 
 .name {
   margin: 0;
@@ -128,12 +59,12 @@ li {
 }
 
 .meta {
-  margin: 0.25rem 0 0;
+  margin: 4px 0 0;
   color: #475569;
   font-size: 0.95rem;
 }
 
-/* Action buttons row (Download CV, LinkedIn, GitHub) */
+/* Actions row: Download CV, LinkedIn, GitHub, Theme */
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -142,65 +73,94 @@ li {
   align-items: center;
 }
 
-/* Override for buttons inside .actions to be pill-style */
-.actions .btn {
+/* Base button */
+.btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 16px;
+  padding: 9px 16px;
   border-radius: 999px;
+  font-size: 0.9rem;
   font-weight: 600;
-  text-decoration: none;
   border: 1px solid rgba(148, 163, 184, 0.55);
   background: #ffffff;
   color: #0f172a;
+  text-decoration: none;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
-.actions .btn:hover {
-  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.9);
+.btn:hover {
   background: #f9fafb;
+  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.9);
+  transform: translateY(-1px);
 }
 
-/* Primary pill (Download CV) */
+/* Primary (Download CV) */
 .btn-primary {
-  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  background: linear-gradient(135deg, #0f6fff, #38bdf8);
   color: #ffffff;
   border: none;
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
 }
 .btn-primary:hover {
   filter: brightness(1.05);
-  box-shadow: 0 10px 26px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.55);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  width: 40px;
+  justify-content: center;
+  padding: 9px 0;
 }
 
 /* Responsive topbar */
 @media (max-width: 720px) {
-  .topbar {
-    grid-template-columns: 1fr;
-    justify-items: flex-start;
-  }
-  .actions {
-    justify-content: flex-start;
-  }
-  .name {
-    font-size: 1.6rem;
-  }
+  .topbar { grid-template-columns: 1fr; justify-items: flex-start; }
+  .actions { justify-content: flex-start; }
+  .name { font-size: 1.6rem; }
 }
 
 /* ============================
-   LIVE BADGE UNDER HEADER
+   LIVE BADGE + VISITOR COUNTER
    ============================ */
 
 .live-badge {
   text-align: center;
-  color: #4b5563;
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  margin-top: 10px;
-  margin-bottom: 6px;
+  color: #0f4ab8;                    /* deeper Azure blue */
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.18em;
+  margin-top: 4px;
+  margin-bottom: 8px;
   text-transform: uppercase;
+}
+
+/* Counter under the strip */
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 20px;
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  font-size: 0.9rem;
+}
+
+/* Small, “minting Azure” pill */
+.counter-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 0%, #22c55e 0, #22c55e 18%, #0f6fff 60%, #0ea5e9 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.45);
 }
 
 /* ============================
@@ -211,7 +171,7 @@ li {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
-  margin: 20px 0;
+  margin: 24px 0 16px;
 }
 
 .tab-btn {
@@ -219,7 +179,7 @@ li {
   color: #fff;
   border: 0;
   border-radius: 999px;
-  padding: 10px 18px;
+  padding: 9px 18px;
   cursor: pointer;
   font-size: 0.9rem;
   letter-spacing: 0.03em;
@@ -232,48 +192,8 @@ li {
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
 }
 
-.tab-panel {
-  display: none;
-}
-.tab-panel.show {
-  display: block;
-}
-
-/* ============================
-   VISITOR COUNTER
-   ============================ */
-
-.counter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 24px 0 16px;
-  color: #0f172a;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  font-size: 0.95rem;
-}
-
-.counter-badge {
-  display: inline-block;
-  padding: 8px 20px;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #0ea5e9, #7c3aed);
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 1rem;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.35);
-}
-
-@media (prefers-color-scheme: dark) {
-  .counter {
-    color: #e5e7eb;
-  }
-  .counter-badge {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  }
-}
+.tab-panel { display: none; }
+.tab-panel.show { display: block; }
 
 /* ============================
    FOOTER
@@ -287,24 +207,16 @@ li {
 }
 
 /* ============================
-   TOP STATUS CARD (AZURE SYSTEM OVERVIEW)
+   TOP STATUS CARD (FULL WIDTH)
    ============================ */
 
 .top-status-card {
-  background: #e5e7eb;        /* Light gray */
+  background: #e5e7eb;
   border-bottom: 1px solid #cbd5f5;
-  padding: 10px 18px;
+  padding: 10px 24px;
   text-align: left;
   color: #1f2937;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
-}
-
-/* Constrain horizontally to align with main card on wide screens */
-@media (min-width: 960px) {
-  .top-status-card {
-    padding-left: calc((100vw - 900px) / 2 + 18px);
-    padding-right: calc((100vw - 900px) / 2 + 18px);
-  }
 }
 
 .top-status-card .status-title {
@@ -321,7 +233,6 @@ li {
   font-size: 1.25rem;
 }
 
-/* LIVE pill aligned to the right */
 .top-status-card .live-pill {
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #ffffff;
@@ -352,16 +263,180 @@ li {
   color: #1f2937;
 }
 
-/* Stack rows more cleanly on very small screens */
+/* small screens: stack rows */
 @media (max-width: 480px) {
-  .top-status-card {
-    padding: 10px 12px;
-  }
-  .top-status-card .status-row {
-    flex-direction: column;
-  }
+  .top-status-card { padding: 8px 14px; }
+  .top-status-card .status-row { flex-direction: column; }
   .top-status-card .label {
     width: auto;
     margin-bottom: 2px;
   }
+}
+
+/* ============================
+   VS CODE STYLE CODE VIEW
+   ============================ */
+
+.code-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+  margin-top: 8px;
+}
+
+.code-sidebar {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 12px 10px;
+  font-size: 0.8rem;
+}
+
+.code-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #e5e7eb;
+}
+
+.file-tree,
+.file-tree ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.file-tree ul {
+  padding-left: 14px;
+}
+
+.file-tree .folder::before {
+  content: "▾ ";
+  color: #facc15;
+}
+
+.file-tree .file::before {
+  content: "• ";
+  color: #6b7280;
+}
+
+.file-tree .active-file {
+  color: #38bdf8;
+}
+
+/* Main code area */
+.code-main {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: Consolas, "Cascadia Code", "Fira Code", monospace;
+  font-size: 0.85rem;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #252526;
+  border-bottom: 1px solid #3f3f46;
+}
+
+.code-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.code-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+.code-dots .red { background: #f87171; }
+.code-dots .yellow { background: #facc15; }
+.code-dots .green { background: #22c55e; }
+
+.code-filename {
+  font-size: 0.78rem;
+  color: #e5e7eb;
+}
+
+/* Code block */
+.code-block {
+  margin: 0;
+  padding: 10px 12px 12px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* VS Code-like token colours */
+.token-comment  { color: #6a9955; font-style: italic; }
+.token-tag      { color: #569cd6; }
+.token-keyword  { color: #c586c0; }
+.token-string   { color: #ce9178; }
+.token-function { color: #dcdcaa; }
+.token-operator { color: #d4d4d4; }
+
+/* Responsive code layout */
+@media (max-width: 700px) {
+  .code-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================
+   DARK MODE
+   ============================ */
+
+body.dark-mode {
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+body.dark-mode .resume-container {
+  background-color: #020617;
+  border-color: #1e293b;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+  color: #e5e7eb;
+  border-bottom-color: #1d4ed8;
+}
+
+body.dark-mode .meta,
+body.dark-mode li,
+body.dark-mode p {
+  color: #e5e7eb;
+}
+
+body.dark-mode .btn {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: #1e293b;
+}
+
+body.dark-mode .btn-primary {
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.6);
+}
+
+body.dark-mode .top-status-card {
+  background: #020617;
+  border-bottom-color: #1e293b;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .top-status-card .value,
+body.dark-mode .top-status-card .label,
+body.dark-mode .top-status-card .status-title {
+  color: #e5e7eb;
+}
+
+body.dark-mode .tabs .tab-btn {
+  background: #1e293b;
+}
+
+body.dark-mode .footer {
+  color: #9ca3af;
 }
