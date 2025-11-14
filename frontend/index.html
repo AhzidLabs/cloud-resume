@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="style.css?v=1.2.1" />
 </head>
 <body>
-  Events Logged: 2941
-Unique IPs: 587
-Error Rate: 0%
   <!-- TOP AZURE SYSTEM STATUS CARD -->
   <section class="top-status-card">
     <div class="status-title">
@@ -78,6 +75,7 @@ Error Rate: 0%
       <h2>SUMMARY</h2>
       <p>Motivated IT Support & Cloud Enthusiast with Microsoft certifications (AZ-900 and AZ-104 in progress), experienced in Azure Virtual Machines, Microsoft Entra ID, and Microsoft 365 administration. Adept at troubleshooting, RBAC configuration, and governance best practices to ensure secure and compliant environments. Known for delivering efficient support, improving system reliability, and bridging technical solutions with business objectives and user experience. One of my recent projects, Cloud Resume Remix – Azure Static Web Apps, showcases CI/CD automation, Azure CDN troubleshooting, and custom domain configuration within a production-style Azure environment.</p>
     </section>
+
     <!-- ========== SKILLS ========== -->
     <section id="skills">
       <h2>CORE SKILLS</h2>
@@ -88,6 +86,7 @@ Error Rate: 0%
         <li><strong>Business & Soft Skills:</strong> Business awareness, customer-focused communication, teamwork, analytical thinking, problem-solving, time management, stakeholder support, adaptability, and understanding how IT enables business goals.</li>
       </ul>
     </section>
+
     <!-- ========== HANDS-ON EXPERIENCE ========== -->
     <section id="azure-experience">
       <h2>HANDS-ON AZURE EXPERIENCE</h2>
@@ -101,6 +100,7 @@ Error Rate: 0%
         <li>Enhanced monitoring by enabling diagnostic settings and fine-tuning action groups.</li>
       </ul>
     </section>
+
     <!-- ========== WORK EXPERIENCE ========== -->
     <section id="experience">
       <h2>WORK EXPERIENCE</h2>
@@ -139,6 +139,7 @@ Error Rate: 0%
         </ul>
       </div>
     </section>
+
     <!-- ========== PROJECTS ========== -->
     <section id="projects">
       <h2>PROJECTS (2023–PRESENT)</h2>
@@ -150,6 +151,7 @@ Error Rate: 0%
         <li><strong>Microsoft 365 Collaboration Lab:</strong> Configured Teams, SharePoint, and OneDrive with secure sharing and access policies.</li>
       </ul>
     </section>
+
     <!-- ========== CERTIFICATIONS ========== -->
     <section id="certifications">
       <h2>CERTIFICATIONS & TRAINING</h2>
@@ -163,6 +165,7 @@ Error Rate: 0%
         <li>City & Guilds: Support, Install, Configure Equipment & Operating Systems</li>
       </ul>
     </section>
+
     <!-- ========== EDUCATION ========== -->
     <section id="education">
       <h2>PROFESSIONAL EDUCATION</h2>
@@ -171,6 +174,7 @@ Error Rate: 0%
         <li>South Essex College – Access to Higher Education in Business Studies (2010 – 2011)</li>
       </ul>
     </section>
+
     <!-- ========== ADDITIONAL INFO ========== -->
     <section id="additional">
       <h2>ADDITIONAL INFORMATION</h2>
@@ -181,6 +185,7 @@ Error Rate: 0%
         <li>Full right to work in the UK.</li>
       </ul>
     </section>
+
     <!-- ========== TABS (Resume / Code / Projects) ========== -->
     <div class="tabs">
       <button class="tab-btn" onclick="openTab('t1')">Resume</button>
@@ -198,7 +203,8 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
       <p><a href="https://github.com/AhzidLabs" target="_blank" rel="noopener">See all projects on GitHub →</a></p>
     </div>
   </div>
-   <!-- ========== SCRIPTS ========== -->
+
+  <!-- ========== SCRIPTS ========== -->
   <script>
     const API_URL = "https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger";
     const VISIT_FLAG_KEY = "ahzid-cloudresume-has-counted";
@@ -246,33 +252,49 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
       }
     }
 
-    // Top status card stats (hooked to AnalyticsSummary if you add it)
+    // Top status card stats (System Overview)
     async function loadTopStats() {
-  try {
-    const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/SystemOverview");
-    if (!res.ok) return;
+      try {
+        const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/SystemOverview", {
+          cache: "no-store"
+        });
 
-    const data = await res.json();
+        if (!res.ok) {
+          console.error("SystemOverview returned status:", res.status);
+          return;
+        }
 
-    // Live total events
-    document.getElementById("stat-events").innerText = data.eventsLogged;
+        const data = await res.json();
 
-    // Live unique IPs
-    document.getElementById("stat-unique").innerText = data.uniqueIps;
+        const events = data.eventsLogged ?? data.totalEvents ?? data.totalVisits ?? 0;
+        const unique = data.uniqueIps ?? data.uniqueIPs ?? data.uniqueVisitors ?? 0;
+        let errorRate = data.errorRate ?? 0;
 
-    // Live error rate (placeholder for now)
-    document.getElementById("stat-errors").innerText = data.errorRate;
-  } catch (err) {
-    console.error("Error fetching top stats:", err);
-  }
-}
+        const eventsEl = document.getElementById("stat-events");
+        const uniqueEl = document.getElementById("stat-unique");
+        const errorsEl = document.getElementById("stat-errors");
 
+        if (eventsEl) eventsEl.innerText = events.toLocaleString();
+        if (uniqueEl) uniqueEl.innerText = unique.toLocaleString();
+
+        if (typeof errorRate === "number") {
+          errorsEl.innerText = errorRate.toString() + "%";
+        } else {
+          errorsEl.innerText = errorRate; // already includes %
+        }
+      } catch (err) {
+        console.error("Error fetching top stats:", err);
+      }
+    }
 
     // Run when page finishes loading
     window.addEventListener("load", loadVisitorCount);
     window.addEventListener("load", loadTopStats);
 
-    // Tab logic (unchanged)
+    // Refresh top stats every 30 seconds
+    setInterval(loadTopStats, 30000);
+
+    // Tab logic
     function openTab(id) {
       document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("show"));
       document.getElementById(id).classList.add("show");
