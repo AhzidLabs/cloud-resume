@@ -90,6 +90,14 @@ li { margin-bottom: 8px; }
   cursor: pointer;
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
+.actions .theme-toggle {
+  border: 1px solid rgba(2,6,23,.08);
+}
+
+.actions .theme-toggle:hover {
+  box-shadow: 0 0 0 4px #bae6fd inset;
+}
+
 
 .btn:hover {
   background: #f9fafb;
@@ -111,9 +119,17 @@ li { margin-bottom: 8px; }
 
 /* Theme toggle button */
 .theme-toggle {
-  width: 40px;
+  min-width: 130px;
+  padding: 10px 14px;
+  display: inline-flex;
   justify-content: center;
-  padding: 9px 0;
+  align-items: center;
+  gap: 8px;
+  border-radius: 9999px;
+  background: #fff;
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 /* Responsive topbar */

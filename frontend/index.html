@@ -379,12 +379,17 @@
 
     // Theme helpers
     function applyTheme(mode) {
-      const body = document.body;
-      const icon = document.getElementById("theme-icon");
-      const isDark = mode === "dark";
-      body.classList.toggle("dark-mode", isDark);
-      if (icon) icon.textContent = isDark ? "☀️" : "🌙";
-    }
+  const body = document.body;
+  const icon = document.getElementById("theme-icon");
+  const label = document.getElementById("theme-label");
+  const isDark = mode === "dark";
+
+  body.classList.toggle("dark-mode", isDark);
+
+  icon.textContent = isDark ? "☀️" : "🌙";
+  label.textContent = isDark ? "Day mode" : "Night mode";
+}
+
 
     function initTheme() {
       const saved = localStorage.getItem(THEME_KEY);
