@@ -37,7 +37,7 @@ jobs:
             # Upload all files from repo to $web (overwrite old ones)
             az storage blob upload-batch \
               --account-name "${{ secrets.STORAGE_ACCOUNT }}" \
-              -s . \
+              -s ./frontend \
               -d '$web' \
               --auth-mode login \
               --overwrite true
