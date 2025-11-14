@@ -13,7 +13,7 @@ node_modules/
 local.settings.json
 
 # Editor / IDE clutter
-.vscode/
+
 *.swp
 *.swo
 

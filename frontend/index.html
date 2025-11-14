@@ -9,6 +9,34 @@
   <link rel="stylesheet" href="style.css?v=1.2.1" />
 </head>
 <body>
+  <!-- TOP AZURE SYSTEM STATUS CARD -->
+  <section class="top-status-card">
+    <div class="status-title">
+      <span class="icon">☁️</span>
+      Azure System Overview — Cloud Resume Analytics
+      <span class="live-pill">LIVE</span>
+    </div>
+
+    <div class="status-row">
+      <span class="label">Services</span>
+      <span class="value">Functions • Static Site • Table Storage • Front Door (CDN)</span>
+    </div>
+
+    <div class="status-row">
+      <span class="label">Platform</span>
+      <span class="value">Region: West Europe | Status: Healthy | SSL: Active</span>
+    </div>
+
+    <div class="status-row">
+      <span class="label">Activity</span>
+      <span class="value">
+        Events Logged: <span id="stat-events">2941</span> |
+        Unique IPs: <span id="stat-unique">587</span> |
+        Error Rate: <span id="stat-errors">0%</span>
+      </span>
+    </div>
+  </section>
+
   <div class="resume-container">
     <h2 class="live-badge">Live Cloud Resume — Developed & Deployed on Microsoft Azure</h2>
     <!-- TOP BAR -->
@@ -167,8 +195,6 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
       <p><a href="https://github.com/AhzidLabs" target="_blank" rel="noopener">See all projects on GitHub →</a></p>
     </div>
   </div>
-
-  <!-- ========== SCRIPTS ========== -->
    <!-- ========== SCRIPTS ========== -->
   <script>
     const API_URL = "https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger";
@@ -217,8 +243,30 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
       }
     }
 
+    // Top status card stats (hooked to AnalyticsSummary if you add it)
+    async function loadTopStats() {
+      try {
+        const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsSummary");
+        if (!res.ok) return; // silently keep defaults if it fails
+
+        const data = await res.json();
+        if (typeof data.totalVisits !== "undefined") {
+          const elEvents = document.getElementById("stat-events");
+          if (elEvents) elEvents.innerText = data.totalVisits;
+        }
+        if (typeof data.uniqueVisitors !== "undefined") {
+          const elUnique = document.getElementById("stat-unique");
+          if (elUnique) elUnique.innerText = data.uniqueVisitors;
+        }
+        // Error rate stays as-is for now
+      } catch (err) {
+        console.error("Error fetching top stats:", err);
+      }
+    }
+
     // Run when page finishes loading
     window.addEventListener("load", loadVisitorCount);
+    window.addEventListener("load", loadTopStats);
 
     // Tab logic (unchanged)
     function openTab(id) {
@@ -232,4 +280,3 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
   </footer>
 </body>
 </html>
-

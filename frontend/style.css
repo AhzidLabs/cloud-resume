@@ -198,3 +198,51 @@ li { margin-bottom: 8px; }
   font-size:.9rem;
   color:#475569;
 }
+/* Top status card (Gray Azure UI) */
+.top-status-card {
+  background: #e5e7eb;        /* Light gray */
+  border-bottom: 2px solid #d1d5db;
+  padding: 16px 24px;
+  text-align: left;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1f2937;
+}
+
+.top-status-card .status-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-status-card .icon {
+  font-size: 1.3rem;
+}
+
+.top-status-card .live-pill {
+  background: #16a34a;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.top-status-card .status-row {
+  font-size: 0.85rem;
+  margin: 2px 0;
+  display: flex;
+}
+
+.top-status-card .label {
+  font-weight: 600;
+  width: 75px;
+  color: #374151;
+}
+
+.top-status-card .value {
+  color: #1f2937;
+}

@@ -56,8 +56,10 @@ resource "azurerm_linux_function_app" "func" {
   }
 
   app_settings = {
-    AzureWebJobsStorage             = data.azurerm_storage_account.sa.primary_connection_string
-    STORAGE_TABLE_NAME              = azurerm_storage_table.visitors.name
-    WEBSITE_RUN_FROM_PACKAGE        = "1"
+    AzureWebJobsStorage      = data.azurerm_storage_account.sa.primary_connection_string
+    STORAGE_TABLE_NAME       = azurerm_storage_table.visitors.name
+    WEBSITE_RUN_FROM_PACKAGE = "1"
+    STORAGE_TABLE_URL        = "https://${data.azurerm_storage_account.sa.name}.table.core.windows.net"
+    STORAGE_SAS_TOKEN        = "sv=2022-11-02&ss=t&srt=co&sp=rwd&se=2030-01-01T00:00:00Z&spr=https&sig=..."
   }
 }
