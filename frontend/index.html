@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="style.css?v=1.2.1" />
 </head>
 <body>
+  Events Logged: 2941
+Unique IPs: 587
+Error Rate: 0%
   <!-- TOP AZURE SYSTEM STATUS CARD -->
   <section class="top-status-card">
     <div class="status-title">
@@ -245,24 +248,25 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
 
     // Top status card stats (hooked to AnalyticsSummary if you add it)
     async function loadTopStats() {
-      try {
-        const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsSummary");
-        if (!res.ok) return; // silently keep defaults if it fails
+  try {
+    const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/SystemOverview");
+    if (!res.ok) return;
 
-        const data = await res.json();
-        if (typeof data.totalVisits !== "undefined") {
-          const elEvents = document.getElementById("stat-events");
-          if (elEvents) elEvents.innerText = data.totalVisits;
-        }
-        if (typeof data.uniqueVisitors !== "undefined") {
-          const elUnique = document.getElementById("stat-unique");
-          if (elUnique) elUnique.innerText = data.uniqueVisitors;
-        }
-        // Error rate stays as-is for now
-      } catch (err) {
-        console.error("Error fetching top stats:", err);
-      }
-    }
+    const data = await res.json();
+
+    // Live total events
+    document.getElementById("stat-events").innerText = data.eventsLogged;
+
+    // Live unique IPs
+    document.getElementById("stat-unique").innerText = data.uniqueIps;
+
+    // Live error rate (placeholder for now)
+    document.getElementById("stat-errors").innerText = data.errorRate;
+  } catch (err) {
+    console.error("Error fetching top stats:", err);
+  }
+}
+
 
     // Run when page finishes loading
     window.addEventListener("load", loadVisitorCount);
