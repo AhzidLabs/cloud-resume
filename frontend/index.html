@@ -169,25 +169,58 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
   </div>
 
   <!-- ========== SCRIPTS ========== -->
+   <!-- ========== SCRIPTS ========== -->
   <script>
-    // Visitor counter
-      async function loadVisitorCount() {
-  try {
-    const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger");
-    const data = await res.json();
+    const API_URL = "https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger";
+    const VISIT_FLAG_KEY = "ahzid-cloudresume-has-counted";
+    const LAST_COUNT_KEY = "ahzid-cloudresume-last-count";
 
-    // Show total visits on the badge
-    document.getElementById("visitor-count").innerText = data.stats.totalVisits;
-  } catch (err) {
-    console.error("Error fetching visitor count:", err);
-    document.getElementById("visitor-count").innerText = "Error";
-  }
-}
+    // Visitor counter with per-tab session control
+    async function loadVisitorCount() {
+      const counterElement = document.getElementById("visitor-count");
+      if (!counterElement) {
+        console.error("Error: #visitor-count element not found");
+        return;
+      }
 
+      const hasCounted = sessionStorage.getItem(VISIT_FLAG_KEY);
 
-    loadVisitorCount();
+      try {
+        if (!hasCounted) {
+          // First time in this tab → call API and increment
+          const res = await fetch(API_URL);
+          const data = await res.json();
 
-    // Tab logic
+          const total = data?.stats?.totalVisits ?? "—";
+          counterElement.innerText = total;
+
+          // Mark this tab as already counted
+          sessionStorage.setItem(VISIT_FLAG_KEY, "true");
+          sessionStorage.setItem(LAST_COUNT_KEY, String(total));
+        } else {
+          // Already counted in this tab → reuse last value
+          const last = sessionStorage.getItem(LAST_COUNT_KEY);
+          if (last) {
+            counterElement.innerText = last;
+          } else {
+            // Fallback if storage got cleared
+            const res = await fetch(API_URL);
+            const data = await res.json();
+            const total = data?.stats?.totalVisits ?? "—";
+            counterElement.innerText = total;
+            sessionStorage.setItem(LAST_COUNT_KEY, String(total));
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching visitor count:", err);
+        counterElement.innerText = "Error";
+      }
+    }
+
+    // Run when page finishes loading
+    window.addEventListener("load", loadVisitorCount);
+
+    // Tab logic (unchanged)
     function openTab(id) {
       document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("show"));
       document.getElementById(id).classList.add("show");
@@ -199,3 +232,4 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
   </footer>
 </body>
 </html>
+
