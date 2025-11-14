@@ -6,7 +6,7 @@
   <title>CV - Ahzid Mahmood</title>
   <meta name="description" content="Live Azure Cloud Resume — deployed via GitHub Actions, Azure Static Web Apps, and Front Door CDN by Ahzid Mahmood.">
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="stylesheet" href="style.css?v=1.2.0" />
+  <link rel="stylesheet" href="style.css?v=1.2.1" />
 </head>
 <body>
   <div class="resume-container">
@@ -171,16 +171,19 @@ resource "azurerm_storage_table" "visitors" { name = "visitorCount" }</code></pr
   <!-- ========== SCRIPTS ========== -->
   <script>
     // Visitor counter
-    async function loadVisitorCount() {
-      try {
-        const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/VisitorCounter");
-        const data = await res.json();
-        document.getElementById("visitor-count").innerText = data.count;
-      } catch (err) {
-        console.error("Error fetching visitor count:", err);
-        document.getElementById("visitor-count").innerText = "Error";
-      }
-    }
+      async function loadVisitorCount() {
+  try {
+    const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger");
+    const data = await res.json();
+
+    // Show total visits on the badge
+    document.getElementById("visitor-count").innerText = data.stats.totalVisits;
+  } catch (err) {
+    console.error("Error fetching visitor count:", err);
+    document.getElementById("visitor-count").innerText = "Error";
+  }
+}
+
 
     loadVisitorCount();
 
