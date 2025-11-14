@@ -82,8 +82,10 @@
 
         <!-- Day / Night mode toggle (top-right) -->
         <button class="btn theme-toggle" type="button" id="theme-toggle" aria-label="Toggle theme">
-          <span id="theme-icon">🌙</span>
-        </button>
+  <span id="theme-icon">🌙</span>
+  <span id="theme-label">Night mode</span>
+</button>
+
       </nav>
     </header>
 
@@ -305,6 +307,7 @@
   </div>
 
   <!-- ========== SCRIPTS ========== -->
+    <!-- ========== SCRIPTS ========== -->
   <script>
     const API_URL = "https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger";
     const VISIT_FLAG_KEY = "ahzid-cloudresume-has-counted";
@@ -379,17 +382,16 @@
 
     // Theme helpers
     function applyTheme(mode) {
-  const body = document.body;
-  const icon = document.getElementById("theme-icon");
-  const label = document.getElementById("theme-label");
-  const isDark = mode === "dark";
+      const body = document.body;
+      const icon = document.getElementById("theme-icon");
+      const label = document.getElementById("theme-label");
+      const isDark = mode === "dark";
 
-  body.classList.toggle("dark-mode", isDark);
+      body.classList.toggle("dark-mode", isDark);
 
-  icon.textContent = isDark ? "☀️" : "🌙";
-  label.textContent = isDark ? "Day mode" : "Night mode";
-}
-
+      if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+      if (label) label.textContent = isDark ? "Day mode" : "Night mode";
+    }
 
     function initTheme() {
       const saved = localStorage.getItem(THEME_KEY);
@@ -425,6 +427,7 @@
     // Refresh top stats every 30 seconds
     setInterval(loadTopStats, 30000);
   </script>
+
 
   <footer class="footer">
     <p>© 2025 Ahzid Mahmood  |  Built & hosted on Microsoft Azure</p>
