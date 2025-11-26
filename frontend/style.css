@@ -456,20 +456,4 @@ body.dark-mode .tabs .tab-btn {
 body.dark-mode .footer {
   color: #9ca3af;
 }
-.live-strip {
-  display: flex;
-  justify-content: flex-start; /* align items to the left */
-  align-items: center;         /* vertical alignment */
-  gap: 20px;                   /* spacing between text and counter */
-}
-
-.live-badge {
-  font-weight: bold;
-  color: #006400; /* green for LIVE */
-}
-
-.counter-badge {
-  font-weight: bold;
-  color: #333; /* adjust to match your theme */
-}
 
