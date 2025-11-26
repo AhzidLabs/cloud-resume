@@ -1,9 +1,0 @@
-﻿{
-  "name": "GetVisitorCount",
-  "version": "1.0.0",
-  "type": "commonjs",
-  "main": "index.js",
-  "dependencies": {
-    "@azure/data-tables": "^13.3.1"
-  }
-}

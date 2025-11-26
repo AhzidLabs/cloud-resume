@@ -7,6 +7,14 @@
   <meta name="description" content="Live Azure Cloud Resume — deployed via GitHub Actions, Azure Static Web Apps, and Front Door CDN by Ahzid Mahmood.">
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="style.css?v=1.3.0" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+
 </head>
 <body>
   <!-- TOP AZURE SYSTEM STATUS CARD (full-width, edge to edge) -->
@@ -206,99 +214,100 @@
     </section>
 
     <!-- ========== TABS (Resume / Code / Projects) ========== -->
-    <div class="tabs">
-      <button class="tab-btn" onclick="openTab('t1')">Resume</button>
-      <button class="tab-btn" onclick="openTab('t2')">Code (VS Code View)</button>
-      <button class="tab-btn" onclick="openTab('t3')">Projects</button>
-    </div>
+   <!-- ========== TABS (Languages) ========== -->
+<div class="tabs">
+  <button class="tab-btn" onclick="openTab('yml')">YAML</button>
+  <button class="tab-btn" onclick="openTab('js')">JavaScript</button>
+  <button class="tab-btn" onclick="openTab('json')">JSON</button>
+  <button class="tab-btn" onclick="openTab('html')">HTML</button>
+  <button class="tab-btn" onclick="openTab('css')">CSS</button>
+</div>
 
-    <!-- Resume PDF -->
-    <div id="t1" class="tab-panel show">
-      <iframe src="Ahzid-Mahmood-CV.pdf" style="width:100%;height:600px;border:0"></iframe>
-    </div>
+<!-- YAML -->
+<div id="yml" class="tab-panel show">
+  <div class="code-block">
+    <h3>CI/CD Workflow</h3>
+    <pre><code class="language-yaml">
+name: Deploy static website to Azure Storage + Purge Azure Front Door
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+    </code></pre>
+  </div>
+</div>
 
-    <!-- VS Code-style code view -->
-    <div id="t2" class="tab-panel">
-      <div class="code-layout">
-        <aside class="code-sidebar">
-          <div class="code-title">cloud-resume</div>
-          <ul class="file-tree">
-            <li><span class="folder">.github</span>
-              <ul>
-                <li><span class="folder">workflows</span>
-                  <ul>
-                    <li><span class="file">deploy.yml</span></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><span class="folder">api</span>
-              <ul>
-                <li><span class="file">AnalyticsLogger/index.js</span></li>
-                <li><span class="file">SystemOverview/index.js</span></li>
-              </ul>
-            </li>
-            <li><span class="folder">error-logbook</span></li>
-            <li><span class="folder">infra</span>
-              <ul>
-                <li><span class="file">main.tf</span></li>
-              </ul>
-            </li>
-            <li><span class="file active-file">index.html</span></li>
-            <li><span class="file">style.css</span></li>
-          </ul>
-        </aside>
+<!-- JavaScript -->
+<div id="js" class="tab-panel">
+  <div class="code-block">
+    <h3>AnalyticsLogger Function</h3>
+    <pre><code class="language-javascript">
+// Azure Function call
+const API_URL = "https://ahzidvisitorbackend.azurewebsites.net/api/AnalyticsLogger";
 
-        <section class="code-main">
-          <div class="code-header">
-            <div class="code-dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-            <span class="code-filename">index.html</span>
-          </div>
-          <pre class="code-block"><code>
-<span class="token-tag">&lt;script&gt;</span>
-  <span class="token-comment">// AnalyticsLogger - Azure Function (frontend usage)</span>
-  <span class="token-keyword">const</span> API_URL <span class="token-operator">=</span> <span class="token-string">"https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger"</span>;
-  <span class="token-keyword">const</span> VISIT_FLAG_KEY <span class="token-operator">=</span> <span class="token-string">"ahzid-cloudresume-has-counted"</span>;
-  <span class="token-keyword">const</span> LAST_COUNT_KEY <span class="token-operator">=</span> <span class="token-string">"ahzid-cloudresume-last-count"</span>;
+async function loadVisitorCount() {
+  const res = await fetch(API_URL);
+  const data = await res.json();
+  console.log("Total visits:", data?.stats?.totalVisits);
+}
+    </code></pre>
+  </div>
+</div>
 
-  <span class="token-keyword">async function</span> <span class="token-function">loadVisitorCount</span>() {
-    <span class="token-keyword">const</span> counterElement <span class="token-operator">=</span> document.<span class="token-function">getElementById</span>(<span class="token-string">"visitor-count"</span>);
-    <span class="token-keyword">if</span> (<span class="token-operator">!</span>counterElement) <span class="token-keyword">return</span>;
-
-    <span class="token-keyword">const</span> hasCounted <span class="token-operator">=</span> sessionStorage.<span class="token-function">getItem</span>(VISIT_FLAG_KEY);
-
-    <span class="token-keyword">try</span> {
-      <span class="token-keyword">if</span> (<span class="token-operator">!</span>hasCounted) {
-        <span class="token-comment">// First visit in this tab - log + increment</span>
-        <span class="token-keyword">const</span> res <span class="token-operator">=</span> <span class="token-keyword">await</span> <span class="token-function">fetch</span>(API_URL);
-        <span class="token-keyword">const</span> data <span class="token-operator">=</span> <span class="token-keyword">await</span> res.<span class="token-function">json</span>();
-        <span class="token-keyword">const</span> total <span class="token-operator">=</span> data?.stats?.totalVisits ?? <span class="token-string">"—"</span>;
-
-        counterElement.innerText <span class="token-operator">=</span> total;
-        sessionStorage.<span class="token-function">setItem</span>(VISIT_FLAG_KEY, <span class="token-string">"true"</span>);
-        sessionStorage.<span class="token-function">setItem</span>(LAST_COUNT_KEY, String(total));
-      } <span class="token-keyword">else</span> {
-        <span class="token-comment">// Reuse stored value for this tab</span>
-        <span class="token-keyword">const</span> last <span class="token-operator">=</span> sessionStorage.<span class="token-function">getItem</span>(LAST_COUNT_KEY);
-        counterElement.innerText <span class="token-operator">=</span> last ?? <span class="token-string">"…"</span>;
-      }
-    } <span class="token-keyword">catch</span> (err) {
-      console.<span class="token-function">error</span>(<span class="token-string">"Error fetching visitor count:"</span>, err);
-      counterElement.innerText <span class="token-operator">=</span> <span class="token-string">"Error"</span>;
-    }
+<!-- JSON -->
+<div id="json" class="tab-panel">
+  <div class="code-block">
+    <h3>local.settings.json</h3>
+    <pre><code class="language-json">
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node"
   }
+}
+    </code></pre>
+  </div>
+</div>
 
-  window.<span class="token-function">addEventListener</span>(<span class="token-string">"load"</span>, loadVisitorCount);
-<span class="token-tag">&lt;/script&gt;</span>
-</code></pre>
+<!-- HTML -->
+<div id="html" class="tab-panel">
+  <div class="code-block">
+    <h3>index.html</h3>
+    <pre><code class="language-html">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ahzid Resume</title>
+  </head>
+  <body>
+    <h1>Welcome to my Cloud Resume</h1>
+    <div id="visitor-count">Loading...</div>
+  </body>
+</html>
+    </code></pre>
+  </div>
+</div>
 
-        </section>
-      </div>
-    </div>
+<!-- CSS -->
+<div id="css" class="tab-panel">
+  <div class="code-block">
+    <h3>style.css</h3>
+    <pre><code class="language-css">
+body {
+  font-family: Consolas, "Courier New", monospace;
+  background-color: #f6f8fa;
+  margin: 0;
+  padding: 20px;
+}
+    </code></pre>
+  </div>
+</div>
 
     <!-- Projects tab -->
     <div id="t3" class="tab-panel">
@@ -306,7 +315,6 @@
     </div>
   </div>
 
-  <!-- ========== SCRIPTS ========== -->
     <!-- ========== SCRIPTS ========== -->
   <script>
     const API_URL = "https://ahzidvisitorbackend2959.azurewebsites.net/api/AnalyticsLogger";
@@ -427,7 +435,6 @@
     // Refresh top stats every 30 seconds
     setInterval(loadTopStats, 30000);
   </script>
-
 
   <footer class="footer">
     <p>© 2025 Ahzid Mahmood  |  Built & hosted on Microsoft Azure</p>

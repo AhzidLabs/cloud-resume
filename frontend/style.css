@@ -378,11 +378,15 @@ li { margin-bottom: 8px; }
 
 /* Code block */
 .code-block {
-  margin: 0;
-  padding: 10px 12px 12px;
+  background-color: #f6f8fa;
+  border: 1px solid #d1d5da;
+  border-radius: 6px;
+  padding: 16px;
+  font-family: Consolas, "Courier New", monospace;
   overflow-x: auto;
-  white-space: pre;
+  margin-bottom: 20px;
 }
+
 
 /* VS Code-like token colours */
 .token-comment  { color: #6a9955; font-style: italic; }
@@ -457,3 +461,37 @@ body.dark-mode .footer {
   color: #9ca3af;
 }
 
+.tabs {
+  margin: 20px 0;
+}
+
+.tab-btn {
+  background: #f6f8fa;
+  border: 1px solid #d1d5da;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-right: 4px;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.tab-btn:hover {
+  background: #e1e4e8;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.show {
+  display: block;
+}
+
+.code-block {
+  background-color: #f6f8fa;
+  border: 1px solid #d1d5da;
+  border-radius: 6px;
+  padding: 16px;
+  font-family: Consolas, "Courier New", monospace;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
