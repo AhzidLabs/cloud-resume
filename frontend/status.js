@@ -18,12 +18,18 @@ async function updateTelemetry() {
   try {
     const res = await fetch(url, {
       headers: {
-        "x-api-key": "m8ne2venoiv3ne0ugdnzfzu6q667gnv6jfkp136u" // replace with the API key you generated in App Insights → API Access
+        "x-api-key": "m8ne2venoiv3ne0ugdnzfzu6q667gnv6jfkp136u" // your real API key
       }
     });
     const data = await res.json();
-    const latest = data.tables[0].rows.pop();
-    document.getElementById("telemetryRequests").innerText = latest[1];
+    const rows = data.tables[0].rows;
+
+    if (rows.length > 0) {
+      const latest = rows.pop();
+      document.getElementById("telemetryRequests").innerText = latest[1];
+    } else {
+      document.getElementById("telemetryRequests").innerText = "0";
+    }
   } catch (err) {
     console.error("Telemetry error:", err);
     document.getElementById("telemetryRequests").innerText = "error";
