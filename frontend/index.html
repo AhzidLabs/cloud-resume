@@ -19,7 +19,6 @@
   </div>
 
   <div class="status-card">
-  <p>👥 Visitors: <span id="visitorCount">loading...</span></p>
   <p>📊 Requests (last 5m): <span id="telemetryRequests">loading...</span></p>
   <p>❌ Error Rate: <span id="systemErrors">loading...</span></p>
   <p>⏱ Avg Latency: <span id="systemLatency">loading...</span></p>
@@ -388,7 +387,6 @@ async function loadTopStats() {
     const latencyEl = document.getElementById("systemLatency");
     const errorEl = document.getElementById("systemErrors");
 
-    if (visitorEl) visitorEl.innerText = data.eventsLogged ?? 0;
     if (requestsEl) requestsEl.innerText = data.requestsLast5m ?? 0;
     if (latencyEl) latencyEl.innerText = data.avgLatency ?? "—";
     if (errorEl) errorEl.innerText = data.errorRate ?? "0%";
