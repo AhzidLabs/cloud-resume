@@ -175,11 +175,11 @@ li { margin-bottom: 8px; }
 
 @keyframes flash {
   from {
-    opacity: 1;
+    opacity: 2;
     transform: scale(1);
   }
   to {
-    opacity: 0.4;
+    opacity: 0.8;
     transform: scale(1.1);
   }
 }
@@ -250,7 +250,7 @@ li { margin-bottom: 8px; }
   border-radius: 999px;
   font-size: 0.7rem;
   font-weight: 700;
-  margin-left: auto;
+  /* margin-left: auto;  Removed */
   text-transform: uppercase;
   letter-spacing: 0.12em;
   box-shadow: 0 4px 10px rgba(21, 128, 61, 0.4);
@@ -292,4 +292,20 @@ body.dark-mode h2 {
    color: #e5e7eb; /* already set, but reinforces */
   text-shadow: 0 1px 2px rgba(0,0,0,0.6); /* subtle glow */
   /* border-bottom removed */
+}
+/* Wrap everything in a central column */
+.page-wrapper {
+  max-width: 900px;        /* same width as resume-container */
+  margin: 0 auto;          /* centers horizontally */
+  padding: 0 16px;         /* optional breathing room */
+}
+
+/* Adjust top-status-card to match resume width */
+.top-status-card {
+  background: #e5e7eb;
+  border-bottom: 1px solid #cbd5f5;
+  padding: 10px 24px;
+  color: #1f2937;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+  border-radius: 8px;      /* optional rounded corners */
 }
