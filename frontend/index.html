@@ -10,19 +10,22 @@
 </head>
 <body>
   <div class="page-wrapper">
-  <!-- TOP AZURE SYSTEM STATUS CARD (full-width, edge to edge) -->
-  
-  <section class="top-status-card">
-      <div class="status-title">
-      <span class="icon">☁️</span>
-      Azure System Overview — Cloud Resume Analytics
-      <span class="live-pill">LIVE</span>
-    </div>
-    <div class="status-card">
+ <!-- TOP AZURE SYSTEM STATUS CARD (full-width, edge to edge) -->
+<section class="top-status-card">
+  <div class="status-title">
+    <span class="icon">☁️</span>
+    Azure System Overview — Cloud Resume Analytics
+    <span class="live-pill">LIVE</span>
+  </div>
+
+  <div class="status-card">
   <p>👥 Visitors: <span id="visitorCount">loading...</span></p>
   <p>📊 Requests (last 5m): <span id="telemetryRequests">loading...</span></p>
+  <p>❌ Error Rate: <span id="systemErrors">loading...</span></p>
+  <p>⏱ Avg Latency: <span id="systemLatency">loading...</span></p>
 </div>
 
+</section>
 
      <!-- Live clock row -->
   <div class="status-row">
@@ -366,37 +369,49 @@
     }
 
     // Top status card stats (System Overview)
-    async function loadTopStats() {
-      try {
-        const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/SystemOverview", {
-          cache: "no-store"
-        });
+async function loadTopStats() {
+  try {
+    const res = await fetch("https://ahzidvisitorbackend2959.azurewebsites.net/api/SystemOverview", {
+      cache: "no-store"
+    });
 
-        if (!res.ok) {
-          console.error("SystemOverview returned status:", res.status);
-          return;
-        }
-
-        const data = await res.json();
-
-        const events = data.eventsLogged ?? data.totalEvents ?? data.totalVisits ?? 0;
-        const unique = data.uniqueIps ?? data.uniqueIPs ?? data.uniqueVisitors ?? 0;
-        let errorRate = data.errorRate ?? 0;
-
-        const eventsEl = document.getElementById("stat-events");
-        const uniqueEl = document.getElementById("stat-unique");
-        const errorsEl = document.getElementById("stat-errors");
-
-        if (eventsEl) eventsEl.innerText = events.toLocaleString();
-        if (uniqueEl) uniqueEl.innerText = unique.toLocaleString();
-        if (errorsEl) {
-          errorsEl.innerText =
-            typeof errorRate === "number" ? errorRate.toString() + "%" : errorRate;
-        }
-      } catch (err) {
-        console.error("Error fetching top stats:", err);
-      }
+    if (!res.ok) {
+      console.error("SystemOverview returned status:", res.status);
+      return;
     }
+
+    const data = await res.json();
+
+    // 🔽 New card updates
+    const visitorEl = document.getElementById("visitorCount");
+    const requestsEl = document.getElementById("telemetryRequests");
+    const latencyEl = document.getElementById("systemLatency");
+    const errorEl = document.getElementById("systemErrors");
+
+    if (visitorEl) visitorEl.innerText = data.eventsLogged ?? 0;
+    if (requestsEl) requestsEl.innerText = data.requestsLast5m ?? 0;
+    if (latencyEl) latencyEl.innerText = data.avgLatency ?? "—";
+    if (errorEl) errorEl.innerText = data.errorRate ?? "0%";
+
+    // Existing stats rows (Activity section)
+    const events = data.eventsLogged ?? data.totalEvents ?? data.totalVisits ?? 0;
+    const unique = data.uniqueIps ?? data.uniqueIPs ?? data.uniqueVisitors ?? 0;
+    let errorRate = data.errorRate ?? 0;
+
+    const eventsEl = document.getElementById("stat-events");
+    const uniqueEl = document.getElementById("stat-unique");
+    const errorsEl = document.getElementById("stat-errors");
+
+    if (eventsEl) eventsEl.innerText = events.toLocaleString();
+    if (uniqueEl) uniqueEl.innerText = unique.toLocaleString();
+    if (errorsEl) {
+      errorsEl.innerText =
+        typeof errorRate === "number" ? errorRate.toString() + "%" : errorRate;
+    }
+  } catch (err) {
+    console.error("Error fetching top stats:", err);
+  }
+}
 
     // Theme helpers
     function applyTheme(mode) {
