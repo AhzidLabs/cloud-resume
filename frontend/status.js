@@ -6,6 +6,7 @@ async function updateVisitorCount() {
     document.getElementById("visitorCount").innerText = data.count;
   } catch (err) {
     console.error("VisitorCounter error:", err);
+    document.getElementById("visitorCount").innerText = "error";
   }
 }
 
@@ -17,14 +18,15 @@ async function updateTelemetry() {
   try {
     const res = await fetch(url, {
       headers: {
-        "x-api-key": "<YOUR-API-KEY>" // generate in App Insights → API Access
+        "x-api-key": "YOUR_REAL_KEY" // replace with the API key you generated in App Insights → API Access
       }
     });
     const data = await res.json();
     const latest = data.tables[0].rows.pop();
-    document.getElementById("telemetryRequests").innerText = latest[1]; // request count
+    document.getElementById("telemetryRequests").innerText = latest[1];
   } catch (err) {
     console.error("Telemetry error:", err);
+    document.getElementById("telemetryRequests").innerText = "error";
   }
 }
 
