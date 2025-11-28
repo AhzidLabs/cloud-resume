@@ -18,7 +18,7 @@ async function updateTelemetry() {
   try {
     const res = await fetch(url, {
       headers: {
-        "x-api-key": "YOUR_REAL_KEY" // replace with the API key you generated in App Insights → API Access
+        "x-api-key": "m8ne2venoiv3ne0ugdnzfzu6q667gnv6jfkp136u" // replace with the API key you generated in App Insights → API Access
       }
     });
     const data = await res.json();
