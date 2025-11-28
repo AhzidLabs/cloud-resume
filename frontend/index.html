@@ -11,12 +11,25 @@
 <body>
   <div class="page-wrapper">
   <!-- TOP AZURE SYSTEM STATUS CARD (full-width, edge to edge) -->
+  
   <section class="top-status-card">
-    <div class="status-title">
+      <div class="status-title">
       <span class="icon">☁️</span>
       Azure System Overview — Cloud Resume Analytics
       <span class="live-pill">LIVE</span>
     </div>
+
+     <!-- Live clock row -->
+  <div class="status-row">
+    <span class="label">Time</span>
+    <span class="value" id="live-clock">--:--:--</span>
+  </div>
+
+  <!-- Live date row -->
+  <div class="status-row">
+    <span class="label">Date</span>
+    <span class="value" id="live-date">DD/MM/YYYY</span>
+  </div>
 
     <div class="status-row">
       <span class="label">Services</span>
@@ -427,6 +440,19 @@
     // Refresh top stats every 30 seconds
     setInterval(loadTopStats, 30000);
   </script>
+
+  
+  <script>
+   function updateClockAndDate() {
+   const now = new Date();
+   document.getElementById("live-clock").innerText = now.toLocaleTimeString();
+   document.getElementById("live-date").innerText = now.toLocaleDateString(
+    "en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" }
+  );
+}
+setInterval(updateClockAndDate, 1000);
+updateClockAndDate();
+</script>
 
 
   <footer class="footer">
