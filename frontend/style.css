@@ -1,7 +1,6 @@
 /* ============================
    BASE LAYOUT & TYPOGRAPHY
    ============================ */
-
 html, body {
   background-color: #eff3f8;
   color: #0f172a;
@@ -26,7 +25,6 @@ h1, h2 {
   color: #003366;
   text-transform: uppercase;
 }
-
 h2 {
   margin-top: 40px;
   border-bottom: 2px solid #003366;
@@ -40,31 +38,25 @@ li { margin-bottom: 8px; }
 /* ============================
    TOPBAR (NAME + ACTION BUTTONS)
    ============================ */
-
 .topbar {
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: flex-end;       /* align buttons with email line */
+  align-items: flex-end;
   gap: 12px;
   margin-bottom: 16px;
 }
-
 .identity { min-width: 0; }
-
 .name {
   margin: 0;
   font-size: 2rem;
   line-height: 1.2;
   letter-spacing: 0.08em;
 }
-
 .meta {
   margin: 4px 0 0;
   color: #475569;
   font-size: 0.95rem;
 }
-
-/* Actions row: Download CV, LinkedIn, GitHub, Theme */
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -73,7 +65,7 @@ li { margin-bottom: 8px; }
   align-items: center;
 }
 
-/* Base button */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -90,22 +82,11 @@ li { margin-bottom: 8px; }
   cursor: pointer;
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
-.actions .theme-toggle {
-  border: 1px solid rgba(2,6,23,.08);
-}
-
-.actions .theme-toggle:hover {
-  box-shadow: 0 0 0 4px #bae6fd inset;
-}
-
-
 .btn:hover {
   background: #f9fafb;
   box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.9);
   transform: translateY(-1px);
 }
-
-/* Primary (Download CV) */
 .btn-primary {
   background: linear-gradient(135deg, #0f6fff, #38bdf8);
   color: #ffffff;
@@ -116,8 +97,6 @@ li { margin-bottom: 8px; }
   filter: brightness(1.05);
   box-shadow: 0 10px 26px rgba(37, 99, 235, 0.55);
 }
-
-/* Theme toggle button */
 .theme-toggle {
   min-width: 130px;
   padding: 10px 14px;
@@ -131,6 +110,9 @@ li { margin-bottom: 8px; }
   font-size: 0.9rem;
   font-weight: 600;
 }
+.theme-toggle:hover {
+  box-shadow: 0 0 0 4px #bae6fd inset;
+}
 
 /* Responsive topbar */
 @media (max-width: 720px) {
@@ -142,10 +124,9 @@ li { margin-bottom: 8px; }
 /* ============================
    LIVE BADGE + VISITOR COUNTER
    ============================ */
-
 .live-badge {
   text-align: center;
-  color: #0f4ab8;                    /* deeper Azure blue */
+  color: #0f4ab8;
   font-weight: 600;
   font-size: 0.88rem;
   letter-spacing: 0.18em;
@@ -153,8 +134,6 @@ li { margin-bottom: 8px; }
   margin-bottom: 8px;
   text-transform: uppercase;
 }
-
-/* Counter under the strip */
 .counter {
   display: flex;
   justify-content: center;
@@ -166,8 +145,6 @@ li { margin-bottom: 8px; }
   letter-spacing: 0.3px;
   font-size: 0.9rem;
 }
-
-/* Small, “minting Azure” pill */
 .counter-badge {
   display: inline-block;
   padding: 6px 20px;
@@ -182,14 +159,12 @@ li { margin-bottom: 8px; }
 /* ============================
    TABS
    ============================ */
-
 .tabs {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
   margin: 24px 0 16px;
 }
-
 .tab-btn {
   background: #003366;
   color: #fff;
@@ -201,20 +176,17 @@ li { margin-bottom: 8px; }
   letter-spacing: 0.03em;
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
-
 .tab-btn:hover {
   background: #0055a3;
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
 }
-
 .tab-panel { display: none; }
 .tab-panel.show { display: block; }
 
 /* ============================
    FOOTER
    ============================ */
-
 .footer {
   text-align: center;
   margin-top: 40px;
@@ -223,9 +195,8 @@ li { margin-bottom: 8px; }
 }
 
 /* ============================
-   TOP STATUS CARD (FULL WIDTH)
+   TOP STATUS CARD
    ============================ */
-
 .top-status-card {
   background: #e5e7eb;
   border-bottom: 1px solid #cbd5f5;
@@ -234,7 +205,6 @@ li { margin-bottom: 8px; }
   color: #1f2937;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
 }
-
 .top-status-card .status-title {
   font-size: 0.95rem;
   font-weight: 600;
@@ -244,11 +214,7 @@ li { margin-bottom: 8px; }
   gap: 8px;
   color: #111827;
 }
-
-.top-status-card .icon {
-  font-size: 1.25rem;
-}
-
+.top-status-card .icon { font-size: 1.25rem; }
 .top-status-card .live-pill {
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #ffffff;
@@ -261,237 +227,35 @@ li { margin-bottom: 8px; }
   letter-spacing: 0.12em;
   box-shadow: 0 4px 10px rgba(21, 128, 61, 0.4);
 }
-
 .top-status-card .status-row {
   font-size: 0.83rem;
   margin: 1px 0;
   display: flex;
   flex-wrap: wrap;
 }
-
 .top-status-card .label {
   font-weight: 600;
   width: 80px;
   color: #374151;
 }
-
-.top-status-card .value {
-  color: #1f2937;
-}
-
-/* small screens: stack rows */
+.top-status-card .value { color: #1f2937; }
 @media (max-width: 480px) {
   .top-status-card { padding: 8px 14px; }
   .top-status-card .status-row { flex-direction: column; }
-  .top-status-card .label {
-    width: auto;
-    margin-bottom: 2px;
-  }
-}
-
-/* ============================
-   VS CODE STYLE CODE VIEW
-   ============================ */
-
-.code-layout {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
-  margin-top: 8px;
-}
-
-.code-sidebar {
-  background: #111827;
-  color: #e5e7eb;
-  padding: 12px 10px;
-  font-size: 0.8rem;
-}
-
-.code-title {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #e5e7eb;
-}
-
-.file-tree,
-.file-tree ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.file-tree ul {
-  padding-left: 14px;
-}
-
-.file-tree .folder::before {
-  content: "▾ ";
-  color: #facc15;
-}
-
-.file-tree .file::before {
-  content: "• ";
-  color: #6b7280;
-}
-
-.file-tree .active-file {
-  color: #38bdf8;
-}
-
-/* Main code area */
-.code-main {
-  background: #1e1e1e;
-  color: #d4d4d4;
-  font-family: Consolas, "Cascadia Code", "Fira Code", monospace;
-  font-size: 0.85rem;
-}
-
-.code-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 10px;
-  background: #252526;
-  border-bottom: 1px solid #3f3f46;
-}
-
-.code-dots {
-  display: flex;
-  gap: 4px;
-}
-
-.code-dots .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-}
-.code-dots .red { background: #f87171; }
-.code-dots .yellow { background: #facc15; }
-.code-dots .green { background: #22c55e; }
-
-.code-filename {
-  font-size: 0.78rem;
-  color: #e5e7eb;
-}
-
-/* Code block */
-.code-block {
-  background-color: #f6f8fa;
-  border: 1px solid #d1d5da;
-  border-radius: 6px;
-  padding: 16px;
-  font-family: Consolas, "Courier New", monospace;
-  overflow-x: auto;
-  margin-bottom: 20px;
-}
-
-
-/* VS Code-like token colours */
-.token-comment  { color: #6a9955; font-style: italic; }
-.token-tag      { color: #569cd6; }
-.token-keyword  { color: #c586c0; }
-.token-string   { color: #ce9178; }
-.token-function { color: #dcdcaa; }
-.token-operator { color: #d4d4d4; }
-
-/* Responsive code layout */
-@media (max-width: 700px) {
-  .code-layout {
-    grid-template-columns: 1fr;
-  }
+  .top-status-card .label { width: auto; margin-bottom: 2px; }
 }
 
 /* ============================
    DARK MODE
    ============================ */
-
 body.dark-mode {
   background-color: #020617;
   color: #e5e7eb;
 }
-
 body.dark-mode .resume-container {
   background-color: #020617;
   border-color: #1e293b;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
 }
-
 body.dark-mode h1,
 body.dark-mode h2 {
-  color: #e5e7eb;
-  border-bottom-color: #1d4ed8;
-}
-
-body.dark-mode .meta,
-body.dark-mode li,
-body.dark-mode p {
-  color: #e5e7eb;
-}
-
-body.dark-mode .btn {
-  background: #020617;
-  color: #e5e7eb;
-  border-color: #1e293b;
-}
-
-body.dark-mode .btn-primary {
-  background: linear-gradient(135deg, #22c55e, #0ea5e9);
-  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.6);
-}
-
-body.dark-mode .top-status-card {
-  background: #020617;
-  border-bottom-color: #1e293b;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-}
-
-body.dark-mode .top-status-card .value,
-body.dark-mode .top-status-card .label,
-body.dark-mode .top-status-card .status-title {
-  color: #e5e7eb;
-}
-
-body.dark-mode .tabs .tab-btn {
-  background: #1e293b;
-}
-
-body.dark-mode .footer {
-  color: #9ca3af;
-}
-
-.tabs {
-  margin: 20px 0;
-}
-
-.tab-btn {
-  background: #f6f8fa;
-  border: 1px solid #d1d5da;
-  padding: 8px 16px;
-  cursor: pointer;
-  margin-right: 4px;
-  font-family: Consolas, "Courier New", monospace;
-}
-
-.tab-btn:hover {
-  background: #e1e4e8;
-}
-
-.tab-panel {
-  display: none;
-}
-
-.tab-panel.show {
-  display: block;
-}
-
-.code-block {
-  background-color: #f6f8fa;
-  border: 1px solid #d1d5da;
-  border-radius: 6px;
-  padding: 16px;
-  font-family: Consolas, "Courier New", monospace;
-  overflow-x: auto;
-  margin-bottom: 20px;
-}
